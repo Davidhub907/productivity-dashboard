@@ -2,16 +2,32 @@ import { useState } from "react";
 
 function CourseForm() {
     const [courseName, setCourseName] = useState("");
+    const [courseColor, setCourseColor] = useState("#32472c");
 
+    function handleSubmit(event) {
+        event.preventDefault();
+        
+        const newCourse = {
+            id: crypto.randomUUID(),
+            name: courseName.trim(),
+            color: courseColor,
+        }
+        console.log("New Course Created:", newCourse);
+    }
+    
     return (
         <div>
             <h1>New Course</h1>
-            <form>
-                <label>Course Name:
-                    <input type ="text" placeholder="Course Name" onChange={(e) => setCourseName(e.target.value)}/>
+            <form onSubmit={handleSubmit}>
+                <label>Course Name: 
+                    <input type ="text" value={courseName} onChange={(e) => setCourseName(e.target.value)}/>
                 </label>
+                <br />
+                <label> Course Color: 
+                    <input type="color" value={courseColor} onChange={(e) => setCourseColor(e.target.value)} />
+                </label>
+                <br />
                 <button type="submit">Submit</button>
-                <p>Course Name: {courseName}</p>
             </form>
         </div>
     );
