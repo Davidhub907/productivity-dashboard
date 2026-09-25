@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function CourseForm() {
+function CourseForm({ onAddCourse }) {
     const [courseName, setCourseName] = useState("");
     const [courseColor, setCourseColor] = useState("#32472c");
 
@@ -13,6 +13,7 @@ function CourseForm() {
             color: courseColor,
         }
         console.log("New Course Created:", newCourse);
+        onAddCourse?.(newCourse);
     }
     
     return (
