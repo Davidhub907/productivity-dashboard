@@ -2,8 +2,8 @@ import DashboardPanel from './DashboardPanel';
 
 function Dashboard() {
   return (
-    <section className="min-h-screen p-6 bg-zinc-950">
-      <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-6">
+    <section className="min-h-screen bg-zinc-950 p-6">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[2fr_1fr]">
         <div className="flex flex-col gap-6">
           <DashboardPanel title="TODAY'S STUDY STATUS" subtitle="Session target:" className="min-h-[300px]">
             <p>Study status placeholder</p>
