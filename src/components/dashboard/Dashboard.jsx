@@ -1,4 +1,5 @@
 import DashboardPanel from './DashboardPanel';
+import CourseProgress from './CourseProgress';
 
 function Dashboard() {
   return (
@@ -22,9 +23,7 @@ function Dashboard() {
             <p>Focus timer placeholder</p>
           </DashboardPanel>
 
-          <DashboardPanel title="COURSE PROGRESS" subtitle="Fall Sem" className="min-h-[400px]">
-            <p>Course progress placeholder</p>
-          </DashboardPanel>
+          <CourseProgress />
 
           <DashboardPanel title="SYSTEM_LOGS:" className="min-h-[140px]">
             <p>system logs placeholder</p>
