@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import DashboardPanel from './DashboardPanel';
 import CourseForm from '../courses/CourseForm';
+import CourseList from '../courses/CourseList';
 
 function CourseProgress() {
   const [showAddCourseForm, setShowAddCourseForm] = useState(false);
@@ -20,7 +21,7 @@ function CourseProgress() {
         className="min-h-[400px]"
         onHeaderAction={() => setShowAddCourseForm(!showAddCourseForm)}
       >
-        <p>Course progress placeholder</p>
+        <CourseList courses={courses} />
       </DashboardPanel>
 
       {showAddCourseForm && (
