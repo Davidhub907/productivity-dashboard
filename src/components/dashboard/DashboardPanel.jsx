@@ -8,7 +8,10 @@ function DashboardPanel({ title, subtitle, children, className = '', onHeaderAct
         <div className="flex items-center gap-2">
           <h2 className="font-mono text-sm font-semibold tracking-wide text-zinc-200">// {title}</h2>
           {onHeaderAction && (
-            <button onClick={onHeaderAction} className="rounded bg-zinc-800 px-2 py-1 text-xs text-zinc-400 hover:bg-zinc-700">
+            <button
+              onClick={onHeaderAction}
+              className="cursor-pointer rounded bg-zinc-800 px-2 py-1 text-xs text-zinc-400 transition duration-600 hover:bg-zinc-600"
+            >
               +
             </button>
           )}
