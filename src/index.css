@@ -1,1 +1,37 @@
 @import 'tailwindcss';
+
+/* Subtle Dark Scrollbar */
+.subtle-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #3f3f46 transparent; /* zinc-700 track */
+}
+
+.subtle-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.subtle-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.subtle-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #3f3f46; /* zinc-700 */
+  border-radius: 9999px;
+}
+
+.subtle-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #52525b; /* zinc-600 */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox, IE, and Edge */
+html,
+body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
