@@ -7,26 +7,36 @@ function Dashboard() {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[2fr_1fr]">
         <div className="flex flex-col gap-6">
           <DashboardPanel title="TODAY'S STUDY STATUS" subtitle="Session target:" className="min-h-[300px]">
-            <p>Study status placeholder</p>
+            <div className="flex h-full items-center justify-center rounded-md border border-dashed border-zinc-800 text-zinc-500">
+              Study status placeholder
+            </div>
           </DashboardPanel>
 
           <DashboardPanel title="WEEKLY STUDY ACTIVITY" subtitle="Mon - Sun distribution" className="min-h-[240px]">
-            <p>Heatmap placeholder</p>
+            <div className="flex h-full items-center justify-center rounded-md border border-dashed border-zinc-800 text-zinc-500">
+              heatmap placeholder
+            </div>
           </DashboardPanel>
 
           <DashboardPanel title="UPCOMING DEADLINES" subtitle="Next 7 days" className="min-h-[280px]">
-            <p>assignments placeholder</p>
+            <div className="flex h-full items-center justify-center rounded-md border border-dashed border-zinc-800 text-zinc-500">
+              Deadlines placeholder
+            </div>
           </DashboardPanel>
         </div>
         <div className="flex flex-col gap-6">
           <DashboardPanel title="FOCUS SESS CONSOLE" subtitle="Status: IDLE" className="min-h-[300px]">
-            <p>Focus timer placeholder</p>
+            <div className="flex h-full items-center justify-center rounded-md border border-dashed border-zinc-800 text-zinc-500">
+              Study time placeholder
+            </div>
           </DashboardPanel>
 
           <CourseProgress />
 
           <DashboardPanel title="SYSTEM_LOGS:" className="min-h-[140px]">
-            <p>system logs placeholder</p>
+            <div className="flex h-full items-center justify-center rounded-md border border-dashed border-zinc-800 text-zinc-500">
+              System log placeholder
+            </div>
           </DashboardPanel>
         </div>
       </div>
