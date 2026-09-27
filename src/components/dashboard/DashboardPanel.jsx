@@ -16,9 +16,7 @@ function DashboardPanel({ title, subtitle, children, className = '', onHeaderAct
         {subtitle && <span className="font-mono text-xs tracking-wide text-zinc-400">{subtitle}</span>}
       </div>
 
-      <div className="flex flex-1 items-center justify-center rounded-md border border-dashed border-zinc-800 font-mono text-sm text-zinc-500">
-        {children}
-      </div>
+      <div className="flex-1">{children}</div>
     </section>
   );
 }
