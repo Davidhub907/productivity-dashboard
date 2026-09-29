@@ -1,9 +1,17 @@
 import { useState } from 'react';
 import DashboardPanel from './DashboardPanel';
 import CourseForm from '../courses/CourseForm';
+import CourseList from '../courses/CourseList';
 
 function CourseProgress() {
   const [showAddCourseForm, setShowAddCourseForm] = useState(false);
+  const [courses, setCourses] = useState([]);
+
+  console.log(courses);
+
+  function handleAddCourse(newCourse) {
+    setCourses((previousCourses) => [...previousCourses, newCourse]);
+  }
 
   return (
     <>
@@ -13,7 +21,7 @@ function CourseProgress() {
         className="min-h-[400px]"
         onHeaderAction={() => setShowAddCourseForm(!showAddCourseForm)}
       >
-        <p>Course progress placeholder</p>
+        <CourseList courses={courses} />
       </DashboardPanel>
 
       {showAddCourseForm && (
@@ -21,7 +29,7 @@ function CourseProgress() {
           <div className="rounded-lg border-2 border-zinc-800 bg-zinc-900 p-6 font-mono text-white">
             <h1 className="mb-4 text-lg"> ADD NEW COURSE </h1>
             <div className="flex items-end justify-between">
-              <CourseForm />
+              <CourseForm onAddCourse={handleAddCourse} />
               <button onClick={() => setShowAddCourseForm(false)} className="rounded bg-zinc-600 px-2 py-1 hover:bg-zinc-700">
                 Cancel
               </button>
