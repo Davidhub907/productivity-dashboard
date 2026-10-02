@@ -34,7 +34,7 @@ function AssignmentAddForm({ onAddAssignment}) {
                 <br />
                 <label>
                     Course:
-                    placeholder for course selection, I would like to add a dropdown menu to choose from existing courses.
+                    placeholder
                 </label>
                 <br />
                 <label>
@@ -44,7 +44,12 @@ function AssignmentAddForm({ onAddAssignment}) {
                 <br />
                 <label>
                     Difficulty Weight:
-                    placeholder for difficulty weight selection, I would like to add a dropdown menu to choose from weight options.
+                    <select value={weight} onChange={(e) => setWeight(e.target.value)}>
+                        <option value="">Select Weight</option>
+                        <option value="1">1 - Light</option>
+                        <option value="2">2 - Medium</option>
+                        <option value="3">3 - Heavy</option>
+                    </select>
                 </label>
                 <br />
                 <label>
