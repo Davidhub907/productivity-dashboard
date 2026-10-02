@@ -41,11 +41,11 @@ function CourseDetails({ course, closeCourse }) {
         <div className="rounded border-2 border-zinc-800 bg-zinc-950/60 p-5">
           <h1 className="mb-4 text-lg">ASSIGNMENTS</h1>
           <div className={`flex items-end justify-between ${showAddAssignmentForm ? 'mb-4 rounded border border-zinc-800 p-3' : ''}`}>
-          {showAddAssignmentForm && (<AssignmentAddForm courseId={course.id} />)}
+            {showAddAssignmentForm && (<AssignmentAddForm courseId={course.id} courseName={course.name} />)}
 
-          <button onClick={ () => setShowAddAssignmentForm(!showAddAssignmentForm)} className="rounded bg-zinc-600 px-2 py-1 hover:bg-zinc-700">
-            {showAddAssignmentForm ? 'Cancel' : '+ Assignment'}
-          </button>
+            <button onClick={ () => setShowAddAssignmentForm(!showAddAssignmentForm)} className="rounded bg-zinc-600 px-2 py-1 hover:bg-zinc-700">
+              {showAddAssignmentForm ? 'Cancel' : '+ Assignment'}
+            </button>
           </div>
 
           <div className="mt-4 flex items-center justify-between rounded border-2 border-zinc-800 bg-zinc-950/60 p-5">
