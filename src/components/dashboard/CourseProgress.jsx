@@ -5,20 +5,14 @@ import CourseList from '../courses/CourseList';
 import CourseEditForm from '../courses/CourseEditForm';
 import CourseDetails from '../courses/CourseDetails';
 
-function CourseProgress() {
+function CourseProgress({ courses, onAddCourse }) {
   const [showAddCourseForm, setShowAddCourseForm] = useState(false);
-  const [courses, setCourses] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState(null);
 
   console.log(courses);
 
-  function handleAddCourse(newCourse) {
-    setCourses((previousCourses) => [...previousCourses, newCourse]);
-  }
-
   function handleSelectCourse(course) {
     setSelectedCourse(course);
-    console.log('The button was pressed');
   }
 
   function handleCloseSelectedCourse() {
@@ -41,7 +35,7 @@ function CourseProgress() {
           <div className="rounded-lg border-2 border-zinc-800 bg-zinc-900 p-6 font-mono text-white">
             <h1 className="mb-4 text-lg"> ADD NEW COURSE </h1>
             <div className="flex items-end justify-between">
-              <CourseForm onAddCourse={handleAddCourse} />
+              <CourseForm onAddCourse={onAddCourse} />
               <button onClick={() => setShowAddCourseForm(false)} className="rounded bg-zinc-600 px-2 py-1 hover:bg-zinc-700">
                 Cancel
               </button>
