@@ -1,16 +1,28 @@
 import { useState } from 'react';
 import DashboardPanel from './DashboardPanel';
-import CourseForm from '../courses/CourseForm';
+import CourseForm from '../courses/CourseAddForm';
 import CourseList from '../courses/CourseList';
+import CourseEditForm from '../courses/CourseEditForm';
+import CourseDetails from '../courses/CourseDetails';
 
 function CourseProgress() {
   const [showAddCourseForm, setShowAddCourseForm] = useState(false);
   const [courses, setCourses] = useState([]);
+  const [selectedCourse, setSelectedCourse] = useState(null);
 
   console.log(courses);
 
   function handleAddCourse(newCourse) {
     setCourses((previousCourses) => [...previousCourses, newCourse]);
+  }
+
+  function handleSelectCourse(course) {
+    setSelectedCourse(course);
+    console.log('The button was pressed');
+  }
+
+  function handleCloseSelectedCourse() {
+    setSelectedCourse(null);
   }
 
   return (
@@ -21,7 +33,7 @@ function CourseProgress() {
         className="min-h-[400px]"
         onHeaderAction={() => setShowAddCourseForm(!showAddCourseForm)}
       >
-        <CourseList courses={courses} />
+        <CourseList courses={courses} onSelectCourse={handleSelectCourse} />
       </DashboardPanel>
 
       {showAddCourseForm && (
@@ -37,6 +49,8 @@ function CourseProgress() {
           </div>
         </div>
       )}
+
+      {selectedCourse && <CourseDetails course={selectedCourse} closeCourse={handleCloseSelectedCourse} />}
     </>
   );
 }
