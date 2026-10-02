@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import DashboardPanel from './DashboardPanel';
-import CourseForm from '../courses/CourseAddForm';
+import CourseAddForm from '../courses/CourseAddForm';
 import CourseList from '../courses/CourseList';
 import CourseEditForm from '../courses/CourseEditForm';
 import CourseDetails from '../courses/CourseDetails';
@@ -35,7 +35,7 @@ function CourseProgress({ courses, onAddCourse }) {
           <div className="rounded-lg border-2 border-zinc-800 bg-zinc-900 p-6 font-mono text-white">
             <h1 className="mb-4 text-lg"> ADD NEW COURSE </h1>
             <div className="flex items-end justify-between">
-              <CourseForm onAddCourse={onAddCourse} />
+              <CourseAddForm onAddCourse={onAddCourse} />
               <button onClick={() => setShowAddCourseForm(false)} className="rounded bg-zinc-600 px-2 py-1 hover:bg-zinc-700">
                 Cancel
               </button>
