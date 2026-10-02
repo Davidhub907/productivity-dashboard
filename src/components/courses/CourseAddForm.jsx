@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function CourseForm({ onAddCourse }) {
+function CourseAddForm({ onAddCourse }) {
   const [courseName, setCourseName] = useState('');
   const [courseCode, setCourseCode] = useState(' ');
   const [courseColor, setCourseColor] = useState('#32472c');
@@ -45,4 +45,4 @@ function CourseForm({ onAddCourse }) {
   );
 }
 
-export default CourseForm;
+export default CourseAddForm;
