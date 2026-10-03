@@ -3,7 +3,7 @@ import { useState } from 'react';
 function CourseAddForm({ onAddCourse }) {
   const [courseName, setCourseName] = useState('');
   const [courseCode, setCourseCode] = useState('');
-  const [courseColor, setCourseColor] = useState('#32472c');
+  const [courseColor, setCourseColor] = useState('#4cc70a');
 
   function handleSubmit(event) {
     event.preventDefault();
