@@ -10,8 +10,20 @@ function Dashboard() {
     setCourses((previousCourses) => [...previousCourses, newCourse]);
   }
 
+  function handleDeleteCourse(courseId) {
+    setCourses((previousCourses) => {
+      return previousCourses.filter((course) => course.id != courseId);
+    });
+  }
+
   function handleAddAssignment(newAssignment) {
     setAssignments((previousAssignments) => [...previousAssignments, newAssignment]);
+  }
+
+  function handleDeleteAssignment(assignmentId) {
+    setAssignments((previousAssignments) => {
+      return previousAssignments.filter((assignment) => assignment.id != assignmentId);
+    });
   }
 
   return (
@@ -43,7 +55,14 @@ function Dashboard() {
             </div>
           </DashboardPanel>
 
-          <CourseProgress courses={courses} onAddCourse={handleAddCourse} assignments={assignments} onAddAssignment={handleAddAssignment} />
+          <CourseProgress
+            courses={courses}
+            onAddCourse={handleAddCourse}
+            onDeleteCourse={handleDeleteCourse}
+            assignments={assignments}
+            onAddAssignment={handleAddAssignment}
+            onDeleteAssignment={handleDeleteAssignment}
+          />
 
           <DashboardPanel title="SYSTEM_LOGS:" className="min-h-[140px]">
             <div className="flex h-full items-center justify-center rounded-md border border-dashed border-zinc-800 text-zinc-500">

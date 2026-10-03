@@ -2,7 +2,7 @@ import AssignmentAddForm from '../assignments/AssignmentAddForm';
 import AssignmentList from '../assignments/AssignmentList';
 import { useState } from 'react';
 
-function CourseDetails({ course, closeCourse, assignments, onAddAssignment }) {
+function CourseDetails({ course, closeCourse, onDeleteCourse, assignments, onAddAssignment, onDeleteAssignment }) {
   const [showAddAssignmentForm, setShowAddAssignmentForm] = useState(false);
 
   const courseAssignments = assignments.filter((assignment) => {
@@ -19,6 +19,18 @@ function CourseDetails({ course, closeCourse, assignments, onAddAssignment }) {
             <span className="h-2 w-2 animate-pulse rounded-full" style={{ backgroundColor: course.color }}></span>
             <span>COURSE_CONSOLE_V4.2 // {course.code}</span>
           </div>
+
+          <button
+            type="button"
+            onClick={() => {
+              onDeleteCourse(course.id);
+              closeCourse();
+            }}
+            className="cursor-pointer rounded border-2 border-zinc-800 bg-zinc-950 p-0.5 text-rose-500 transition-colors hover:bg-zinc-800 hover:text-rose-400"
+          >
+            [ DELETE ]
+          </button>
+
           <button
             onClick={closeCourse}
             type="button"
@@ -57,7 +69,7 @@ function CourseDetails({ course, closeCourse, assignments, onAddAssignment }) {
           </div>
 
           <div className="mt-4 flex items-center justify-between rounded border-2 border-zinc-800 bg-zinc-950/60 p-5">
-            <AssignmentList assignments={courseAssignments} />
+            <AssignmentList assignments={courseAssignments} onDeleteAssignment={onDeleteAssignment} />
           </div>
         </div>
         <div className="flex items-center justify-between border-t border-zinc-800 p-2 text-xs tracking-wider">
