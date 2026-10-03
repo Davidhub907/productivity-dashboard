@@ -56,21 +56,33 @@ function CourseDetails({ course, closeCourse, onDeleteCourse, assignments, onAdd
           <span> Study time placeholder </span>
         </div>
         <div className="rounded border-2 border-zinc-800 bg-zinc-950/60 p-5">
-          <h1 className="mb-4 text-lg">ASSIGNMENTS</h1>
-          <div className={`flex items-end justify-between ${showAddAssignmentForm ? 'mb-4 rounded border border-zinc-800 p-3' : ''}`}>
-            {showAddAssignmentForm && <AssignmentAddForm courseId={course.id} onAddAssignment={onAddAssignment} />}
+          <div className="flex items-center justify-between">
+            <h1 className="text-lg">ASSIGNMENTS</h1>
 
-            <button
-              onClick={() => setShowAddAssignmentForm(!showAddAssignmentForm)}
-              className="rounded bg-zinc-600 px-2 py-1 hover:bg-zinc-700"
-            >
-              {showAddAssignmentForm ? 'Cancel' : '+ Assignment'}
+            <button onClick={() => setShowAddAssignmentForm(true)} className="rounded bg-zinc-600 px-2 py-1 hover:bg-zinc-700">
+              + Assignment
             </button>
           </div>
 
           <div className="mt-4 flex items-center justify-between rounded border-2 border-zinc-800 bg-zinc-950/60 p-5">
             <AssignmentList assignments={courseAssignments} onDeleteAssignment={onDeleteAssignment} />
           </div>
+
+          {showAddAssignmentForm && (
+            <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60">
+              <div className="rounded-lg border-2 border-zinc-800 bg-zinc-900 p-6 font-mono text-white">
+                <h1 className="mb-4 text-lg">ADD NEW ASSIGNMENT</h1>
+
+                <div className="flex items-end justify-between gap-4">
+                  <AssignmentAddForm courseId={course.id} onAddAssignment={onAddAssignment} />
+
+                  <button onClick={() => setShowAddAssignmentForm(false)} className="rounded bg-zinc-600 px-2 py-1 hover:bg-zinc-700">
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
         <div className="flex items-center justify-between border-t border-zinc-800 p-2 text-xs tracking-wider">
           <p>footer placeholder</p>
