@@ -41,16 +41,16 @@ function AssignmentAddForm({ courseId, courseName, onAddAssignment}) {
                     
                     <label className="mb-1 block">
                         Due Date:
-                        <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} className="rounded border border-zinc-900 bg-zinc-800 " />
+                        <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} className={`rounded border border-zinc-900 bg-zinc-800 ${!dueDate ? 'text-zinc-500' : ''}`} />
                     </label>
                     
                     <label className="mb-1 block">
                         Difficulty Weight:
-                        <select value={weight} onChange={(e) => setWeight(e.target.value)} className="rounded border border-zinc-900 bg-zinc-800 ">
+                        <select value={weight} onChange={(e) => setWeight(e.target.value)} className={`rounded border border-zinc-900 bg-zinc-800 ${!weight ? 'text-zinc-500' : ''}`} >
                             <option value="" className="text-zinc-500">Select Weight</option>
-                            <option value="1">1 - Light</option>
-                            <option value="2">2 - Medium</option>
-                            <option value="3">3 - Heavy</option>
+                            <option value="1" className="text-zinc-200">1 - Light</option>
+                            <option value="2" className="text-zinc-200">2 - Medium</option>
+                            <option value="3" className="text-zinc-200">3 - Heavy</option>
                         </select>
                     </label>
                     
