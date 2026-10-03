@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function AssignmentAddForm({ courseID, courseName, onAddAssignment}) {
+function AssignmentAddForm({ courseId, courseName, onAddAssignment}) {
     const [assignmentTitle, setAssignmentTitle] = useState('');
     const [dueDate, setDueDate] = useState('');
     const [weight, setWeight] = useState('');
@@ -12,7 +12,7 @@ function AssignmentAddForm({ courseID, courseName, onAddAssignment}) {
         const newAssignment = {
             id: crypto.randomUUID(),
             title: assignmentTitle.trim(),
-            courseId: courseID,
+            courseId: courseId,
             dueDate: dueDate.trim(),
             weight: weight.trim(),
             estimatedMinutes: estimatedMinutes.trim(),
