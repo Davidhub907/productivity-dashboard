@@ -11,9 +11,9 @@ function Dashboard() {
   }
 
   function handleDeleteCourse(courseId) {
-    setCourses((previousCourses) => {
-      return previousCourses.filter((course) => course.id != courseId);
-    });
+    setCourses((previousCourses) => previousCourses.filter((course) => course.id !== courseId));
+
+    setAssignments((previousAssignments) => previousAssignments.filter((assignment) => assignment.courseId !== courseId));
   }
 
   function handleAddAssignment(newAssignment) {
