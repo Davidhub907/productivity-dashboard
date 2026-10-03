@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 function AssignmentAddForm({ courseId, onAddAssignment }) {
   const [assignmentTitle, setAssignmentTitle] = useState('');
-  const [course, setCourse] = useState('');
   const [dueDate, setDueDate] = useState('');
   const [weight, setWeight] = useState('');
   const [estimatedMinutes, setEstimatedMinutes] = useState('');
@@ -25,40 +24,81 @@ function AssignmentAddForm({ courseId, onAddAssignment }) {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Assignment Title:
-          <input type="text" value={assignmentTitle} onChange={(e) => setAssignmentTitle(e.target.value)} />
+    <form className="flex w-full flex-col gap-5" onSubmit={handleSubmit}>
+      {/* Assignment Title */}
+      <div className="flex flex-col gap-2">
+        <label htmlFor="assignmentTitle" className="text-xs tracking-wider text-zinc-400 uppercase">
+          Assignment Title
         </label>
-        <br />
-        <label>Course: placeholder</label>
-        <br />
-        <label>
-          Due Date:
-          <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
+
+        <input
+          id="assignmentTitle"
+          type="text"
+          value={assignmentTitle}
+          onChange={(e) => setAssignmentTitle(e.target.value)}
+          placeholder="Project Report"
+          className="w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2.5 text-sm text-zinc-100 transition outline-none placeholder:text-zinc-600 focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500"
+        />
+      </div>
+
+      {/* Due Date */}
+      <div className="flex flex-col gap-2">
+        <label htmlFor="dueDate" className="text-xs tracking-wider text-zinc-400 uppercase">
+          Due Date
         </label>
-        <br />
-        <label>
-          Difficulty Weight:
-          <select value={weight} onChange={(e) => setWeight(e.target.value)}>
-            <option value="">Select Weight</option>
-            <option value="1">1 - Light</option>
-            <option value="2">2 - Medium</option>
-            <option value="3">3 - Heavy</option>
-          </select>
+
+        <input
+          id="dueDate"
+          type="date"
+          value={dueDate}
+          onChange={(e) => setDueDate(e.target.value)}
+          className="w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2.5 text-sm text-zinc-100 transition outline-none focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500"
+        />
+      </div>
+
+      {/* Difficulty Weight */}
+      <div className="flex flex-col gap-2">
+        <label htmlFor="weight" className="text-xs tracking-wider text-zinc-400 uppercase">
+          Difficulty Weight
         </label>
-        <br />
-        <label>
-          Estimated Minutes:
-          <input type="number" value={estimatedMinutes} onChange={(e) => setEstimatedMinutes(e.target.value)} />
+
+        <select
+          id="weight"
+          value={weight}
+          onChange={(e) => setWeight(e.target.value)}
+          className="w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2.5 text-sm text-zinc-100 transition outline-none focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500"
+        >
+          <option value="">Select Weight</option>
+          <option value="1">1 - Light</option>
+          <option value="2">2 - Medium</option>
+          <option value="3">3 - Heavy</option>
+        </select>
+      </div>
+
+      {/* Estimated Minutes */}
+      <div className="flex flex-col gap-2">
+        <label htmlFor="estimatedMinutes" className="text-xs tracking-wider text-zinc-400 uppercase">
+          Estimated Minutes
         </label>
-        <br />
-        <button type="submit" className="mt-4 rounded bg-zinc-600 px-2 py-1 hover:bg-zinc-700">
-          Submit
-        </button>
-      </form>
-    </div>
+
+        <input
+          id="estimatedMinutes"
+          type="number"
+          value={estimatedMinutes}
+          onChange={(e) => setEstimatedMinutes(e.target.value)}
+          placeholder="60"
+          min="0"
+          className="w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2.5 text-sm text-zinc-100 transition outline-none placeholder:text-zinc-600 focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500"
+        />
+      </div>
+
+      <button
+        type="submit"
+        className="mt-2 rounded-md bg-zinc-100 px-4 py-2.5 text-sm font-semibold text-zinc-950 transition hover:bg-white active:scale-[0.98]"
+      >
+        Add Assignment
+      </button>
+    </form>
   );
 }
 
