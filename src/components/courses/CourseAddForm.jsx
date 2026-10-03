@@ -46,7 +46,7 @@ function CourseAddForm({ onAddCourse }) {
           id="courseCode"
           type="text"
           className="w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2.5 text-sm text-zinc-100 transition outline-none placeholder:text-zinc-600 focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500"
-          placeholder="CS 401"
+          placeholder="CS401"
           value={courseCode}
           onChange={(e) => setCourseCode(e.target.value)}
         />
