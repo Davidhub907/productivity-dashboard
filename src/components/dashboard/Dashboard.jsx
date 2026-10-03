@@ -10,6 +10,10 @@ function Dashboard() {
     setCourses((previousCourses) => [...previousCourses, newCourse]);
   }
 
+  function handleAddAssignment(newAssignment) {
+    setAssignments((previousAssignments) => [...previousAssignments, newAssignment]);
+  }
+
   return (
     <section className="min-h-screen bg-zinc-950 p-6">
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[2fr_1fr]">
@@ -39,7 +43,7 @@ function Dashboard() {
             </div>
           </DashboardPanel>
 
-          <CourseProgress courses={courses} onAddCourse={handleAddCourse} />
+          <CourseProgress courses={courses} onAddCourse={handleAddCourse} assignments={assignments} onAddAssignment={handleAddAssignment} />
 
           <DashboardPanel title="SYSTEM_LOGS:" className="min-h-[140px]">
             <div className="flex h-full items-center justify-center rounded-md border border-dashed border-zinc-800 text-zinc-500">

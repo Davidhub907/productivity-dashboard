@@ -1,4 +1,14 @@
-function CourseDetails({ course, closeCourse }) {
+import AssignmentAddForm from '../assignments/AssignmentAddForm';
+import AssignmentList from '../assignments/AssignmentList';
+import { useState } from 'react';
+
+function CourseDetails({ course, closeCourse, assignments, onAddAssignment }) {
+  const [showAddAssignmentForm, setShowAddAssignmentForm] = useState(false);
+
+  const courseAssignments = assignments.filter((assignment) => {
+    return assignment.courseId === course.id;
+  });
+
   return (
     <section className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 font-mono text-zinc-200">
       {/* Outer Shell Window*/}
@@ -33,8 +43,22 @@ function CourseDetails({ course, closeCourse }) {
         <div className="flex items-center justify-between rounded border-2 border-zinc-800 bg-zinc-950/60 p-5">
           <span> Study time placeholder </span>
         </div>
-        <div className="flex items-center justify-between rounded border-2 border-zinc-800 bg-zinc-950/60 p-5">
-          <span> Assignments list placeholder </span>
+        <div className="rounded border-2 border-zinc-800 bg-zinc-950/60 p-5">
+          <h1 className="mb-4 text-lg">ASSIGNMENTS</h1>
+          <div className={`flex items-end justify-between ${showAddAssignmentForm ? 'mb-4 rounded border border-zinc-800 p-3' : ''}`}>
+            {showAddAssignmentForm && <AssignmentAddForm courseId={course.id} onAddAssignment={onAddAssignment} />}
+
+            <button
+              onClick={() => setShowAddAssignmentForm(!showAddAssignmentForm)}
+              className="rounded bg-zinc-600 px-2 py-1 hover:bg-zinc-700"
+            >
+              {showAddAssignmentForm ? 'Cancel' : '+ Assignment'}
+            </button>
+          </div>
+
+          <div className="mt-4 flex items-center justify-between rounded border-2 border-zinc-800 bg-zinc-950/60 p-5">
+            <AssignmentList assignments={courseAssignments} />
+          </div>
         </div>
         <div className="flex items-center justify-between border-t border-zinc-800 p-2 text-xs tracking-wider">
           <p>footer placeholder</p>
