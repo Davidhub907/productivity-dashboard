@@ -59,7 +59,7 @@ function AssignmentAddForm({ courseId, onAddAssignment }) {
       {/* Difficulty Weight */}
       <div className="flex flex-col gap-2">
         <label htmlFor="weight" className="text-xs tracking-wider text-zinc-400 uppercase">
-          Difficulty Weight
+          Difficulty
         </label>
 
         <select
@@ -68,10 +68,10 @@ function AssignmentAddForm({ courseId, onAddAssignment }) {
           onChange={(e) => setWeight(e.target.value)}
           className="w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2.5 text-sm text-zinc-100 transition outline-none focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500"
         >
-          <option value="">Select Weight</option>
-          <option value="1">1 - Light</option>
-          <option value="2">2 - Medium</option>
-          <option value="3">3 - Heavy</option>
+          <option value="">Select Difficulty</option>
+          <option value="Easy">1 - Easy </option>
+          <option value="Medium">2 - Medium </option>
+          <option value="Hard">3 - Hard </option>
         </select>
       </div>
 
