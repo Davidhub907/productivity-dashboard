@@ -11,7 +11,6 @@ function CourseProgress() {
   console.log(courses);
 
   function handleAddCourse(newCourse) {
-    console.log(newCourse);
     setCourses((previousCourses) => [...previousCourses, newCourse]);
   }
 
