@@ -15,6 +15,16 @@ function CourseForm({ onAddCourse }) {
       color: courseColor,
     };
     console.log('New Course Created:', newCourse);
+
+    const coursesJson = localStorage.getItem('courses');
+    const courses = coursesJson ? JSON.parse(coursesJson) : [];
+    console.log("Before courses: ")
+    console.log(courses);
+    courses.push(newCourse);
+    console.log("After courses: ");
+    console.log(courses);
+    localStorage.setItem('courses', JSON.stringify(courses));
+
     onAddCourse?.(newCourse);
   }
 
