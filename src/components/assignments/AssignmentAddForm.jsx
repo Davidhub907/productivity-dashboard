@@ -21,6 +21,12 @@ function AssignmentAddForm({ courseId, onAddAssignment }) {
 
     console.log('New Assignment Created:', newAssignment);
     onAddAssignment?.(newAssignment);
+
+    // Reset form fields after submission
+    setAssignmentTitle('');
+    setDueDate('');
+    setWeight('');
+    setEstimatedMinutes('');
   }
 
   return (
@@ -52,7 +58,7 @@ function AssignmentAddForm({ courseId, onAddAssignment }) {
           type="date"
           value={dueDate}
           onChange={(e) => setDueDate(e.target.value)}
-          className="w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2.5 text-sm text-zinc-100 transition outline-none focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500"
+          className={`w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2.5 text-sm transition outline-none focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500 ${!dueDate ? 'text-zinc-600' : 'text-zinc-100'}`}
         />
       </div>
 
@@ -66,12 +72,20 @@ function AssignmentAddForm({ courseId, onAddAssignment }) {
           id="weight"
           value={weight}
           onChange={(e) => setWeight(e.target.value)}
-          className="w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2.5 text-sm text-zinc-100 transition outline-none focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500"
+          className={`w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2.5 text-sm text-zinc-100 transition outline-none focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500 ${!weight ? 'text-zinc-600' : 'text-zinc-100'}`}
         >
-          <option value="">Select Difficulty</option>
-          <option value="Easy">1 - Easy </option>
-          <option value="Medium">2 - Medium </option>
-          <option value="Hard">3 - Hard </option>
+          <option value="" className="text-zinc-600">
+            Select Difficulty
+          </option>
+          <option value="Easy" className="text-zinc-100">
+            1 - Easy{' '}
+          </option>
+          <option value="Medium" className="text-zinc-100">
+            2 - Medium{' '}
+          </option>
+          <option value="Hard" className="text-zinc-100">
+            3 - Hard{' '}
+          </option>
         </select>
       </div>
 

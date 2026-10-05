@@ -16,6 +16,11 @@ function CourseAddForm({ onAddCourse }) {
     };
     console.log('New Course Created:', newCourse);
     onAddCourse?.(newCourse);
+
+    //reset form after submission
+    setCourseName('');
+    setCourseCode('');
+    setCourseColor('#32472c');
   }
 
   return (
