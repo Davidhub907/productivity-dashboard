@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { saveCourse } from '../../utils/storage.js';
 
 function CourseForm({ onAddCourse }) {
   const [courseName, setCourseName] = useState('');
@@ -16,15 +17,7 @@ function CourseForm({ onAddCourse }) {
     };
     console.log('New Course Created:', newCourse);
 
-    const coursesJson = localStorage.getItem('courses');
-    const courses = coursesJson ? JSON.parse(coursesJson) : [];
-    console.log("Before courses: ")
-    console.log(courses);
-    courses.push(newCourse);
-    console.log("After courses: ");
-    console.log(courses);
-    localStorage.setItem('courses', JSON.stringify(courses));
-
+    saveCourse(newCourse);
     onAddCourse?.(newCourse);
   }
 
