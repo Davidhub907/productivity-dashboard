@@ -2,14 +2,16 @@ import { useState } from 'react';
 import DashboardPanel from './DashboardPanel';
 import CourseForm from '../courses/CourseForm';
 import CourseList from '../courses/CourseList';
+import { loadCourses } from '../../utils/storage.js';
 
 function CourseProgress() {
   const [showAddCourseForm, setShowAddCourseForm] = useState(false);
-  const [courses, setCourses] = useState([]);
+  const [courses, setCourses] = useState(loadCourses());
 
   console.log(courses);
 
   function handleAddCourse(newCourse) {
+    console.log(newCourse);
     setCourses((previousCourses) => [...previousCourses, newCourse]);
   }
 
