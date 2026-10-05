@@ -5,7 +5,7 @@ import CourseList from '../courses/CourseList';
 import CourseEditForm from '../courses/CourseEditForm';
 import CourseDetails from '../courses/CourseDetails';
 
-function CourseProgress({ courses, onAddCourse }) {
+function CourseProgress({ courses, onAddCourse, onDeleteCourse, assignments, onAddAssignment, onDeleteAssignment }) {
   const [showAddCourseForm, setShowAddCourseForm] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
 
@@ -31,12 +31,24 @@ function CourseProgress({ courses, onAddCourse }) {
       </DashboardPanel>
 
       {showAddCourseForm && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/60">
-          <div className="rounded-lg border-2 border-zinc-800 bg-zinc-900 p-6 font-mono text-white">
-            <h1 className="mb-4 text-lg"> ADD NEW COURSE </h1>
-            <div className="flex items-end justify-between">
-              <CourseAddForm onAddCourse={onAddCourse} />
-              <button onClick={() => setShowAddCourseForm(false)} className="rounded bg-zinc-600 px-2 py-1 hover:bg-zinc-700">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
+          <div className="w-full max-w-md rounded-xl border border-zinc-800 bg-zinc-900 p-6 font-mono text-white shadow-2xl">
+            {/* Header */}
+            <div className="mb-6">
+              <h1 className="text-lg font-semibold tracking-wide">ADD NEW COURSE</h1>
+
+              <p className="mt-1 text-xs text-zinc-500">Add a course to your current semester.</p>
+            </div>
+
+            {/* Form */}
+            <CourseAddForm onAddCourse={onAddCourse} />
+
+            {/* Footer */}
+            <div className="mt-4 border-t border-zinc-800 pt-4">
+              <button
+                onClick={() => setShowAddCourseForm(false)}
+                className="w-full cursor-pointer rounded-md border border-zinc-700 px-4 py-2 text-sm text-zinc-400 transition hover:bg-zinc-800 hover:text-zinc-200"
+              >
                 Cancel
               </button>
             </div>
@@ -44,7 +56,16 @@ function CourseProgress({ courses, onAddCourse }) {
         </div>
       )}
 
-      {selectedCourse && <CourseDetails course={selectedCourse} closeCourse={handleCloseSelectedCourse} />}
+      {selectedCourse && (
+        <CourseDetails
+          course={selectedCourse}
+          onDeleteCourse={onDeleteCourse}
+          closeCourse={handleCloseSelectedCourse}
+          assignments={assignments}
+          onAddAssignment={onAddAssignment}
+          onDeleteAssignment={onDeleteAssignment}
+        />
+      )}
     </>
   );
 }
