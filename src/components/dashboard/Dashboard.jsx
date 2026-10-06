@@ -1,9 +1,10 @@
 import DashboardPanel from './DashboardPanel';
 import CourseProgress from './CourseProgress';
 import { useState } from 'react';
+import { loadCourses } from '../../utils/storage.js';
 
 function Dashboard() {
-  const [courses, setCourses] = useState([]);
+  const [courses, setCourses] = useState(loadCourses());
   const [assignments, setAssignments] = useState([]);
 
   function handleAddCourse(newCourse) {
