@@ -1,7 +1,31 @@
 import DashboardPanel from './DashboardPanel';
 import CourseProgress from './CourseProgress';
+import { useState } from 'react';
 
 function Dashboard() {
+  const [courses, setCourses] = useState([]);
+  const [assignments, setAssignments] = useState([]);
+
+  function handleAddCourse(newCourse) {
+    setCourses((previousCourses) => [...previousCourses, newCourse]);
+  }
+
+  function handleDeleteCourse(courseId) {
+    setCourses((previousCourses) => previousCourses.filter((course) => course.id !== courseId));
+
+    setAssignments((previousAssignments) => previousAssignments.filter((assignment) => assignment.courseId !== courseId));
+  }
+
+  function handleAddAssignment(newAssignment) {
+    setAssignments((previousAssignments) => [...previousAssignments, newAssignment]);
+  }
+
+  function handleDeleteAssignment(assignmentId) {
+    setAssignments((previousAssignments) => {
+      return previousAssignments.filter((assignment) => assignment.id != assignmentId);
+    });
+  }
+
   return (
     <section className="min-h-screen bg-zinc-950 p-6">
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[2fr_1fr]">
@@ -31,7 +55,14 @@ function Dashboard() {
             </div>
           </DashboardPanel>
 
-          <CourseProgress />
+          <CourseProgress
+            courses={courses}
+            onAddCourse={handleAddCourse}
+            onDeleteCourse={handleDeleteCourse}
+            assignments={assignments}
+            onAddAssignment={handleAddAssignment}
+            onDeleteAssignment={handleDeleteAssignment}
+          />
 
           <DashboardPanel title="SYSTEM_LOGS:" className="min-h-[140px]">
             <div className="flex h-full items-center justify-center rounded-md border border-dashed border-zinc-800 text-zinc-500">
