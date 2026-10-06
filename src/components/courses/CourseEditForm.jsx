@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { saveCourse } from '../../utils/storage.js';
 
 function CourseEditForm({ course, closeCourse }) {
   const [courseName, editCourseName] = useState(course.name);
