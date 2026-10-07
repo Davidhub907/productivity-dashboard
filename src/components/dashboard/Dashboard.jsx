@@ -1,9 +1,10 @@
 import DashboardPanel from './DashboardPanel';
 import CourseProgress from './CourseProgress';
 import { useState } from 'react';
+import { deleteCourse, loadCourses } from '../../utils/storage.js';
 
 function Dashboard() {
-  const [courses, setCourses] = useState([]);
+  const [courses, setCourses] = useState(loadCourses());
   const [assignments, setAssignments] = useState([]);
 
   function handleAddCourse(newCourse) {
@@ -11,6 +12,7 @@ function Dashboard() {
   }
 
   function handleDeleteCourse(courseId) {
+    deleteCourse(courseId);
     setCourses((previousCourses) => previousCourses.filter((course) => course.id !== courseId));
 
     setAssignments((previousAssignments) => previousAssignments.filter((assignment) => assignment.courseId !== courseId));

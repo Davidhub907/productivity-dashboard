@@ -2,14 +2,11 @@ import { useState } from 'react';
 import DashboardPanel from './DashboardPanel';
 import CourseAddForm from '../courses/CourseAddForm';
 import CourseList from '../courses/CourseList';
-import CourseEditForm from '../courses/CourseEditForm';
 import CourseDetails from '../courses/CourseDetails';
 
 function CourseProgress({ courses, onAddCourse, onDeleteCourse, assignments, onAddAssignment, onDeleteAssignment }) {
   const [showAddCourseForm, setShowAddCourseForm] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
-
-  console.log(courses);
 
   function handleSelectCourse(course) {
     setSelectedCourse(course);
