@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { saveAssignment } from '../../utils/storage.js';
 
 function AssignmentAddForm({ courseId, onAddAssignment }) {
   const [assignmentTitle, setAssignmentTitle] = useState('');
@@ -20,6 +21,7 @@ function AssignmentAddForm({ courseId, onAddAssignment }) {
     };
 
     console.log('New Assignment Created:', newAssignment);
+    saveAssignment(newAssignment);
     onAddAssignment?.(newAssignment);
 
     // Reset form fields after submission
