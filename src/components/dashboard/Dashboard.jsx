@@ -1,31 +1,34 @@
 import DashboardPanel from './DashboardPanel';
 import CourseProgress from './CourseProgress';
 import { useState } from 'react';
-import { deleteCourse, loadCourses } from '../../utils/storage.js';
+import { deleteAssignment, deleteCourse, loadAssignments, loadCourses } from '../../utils/storage.js';
 
 function Dashboard() {
   const [courses, setCourses] = useState(loadCourses());
-  const [assignments, setAssignments] = useState([]);
+  const [assignments, setAssignments] = useState(loadAssignments());
 
   function handleAddCourse(newCourse) {
     setCourses((previousCourses) => [...previousCourses, newCourse]);
   }
 
   function handleDeleteCourse(courseId) {
+    for (const assignment of assignments) {
+      if (assignment.courseId === courseId) {
+        deleteAssignment(assignment.id)
+      }
+    }
     deleteCourse(courseId);
+    setAssignments(loadAssignments())
     setCourses((previousCourses) => previousCourses.filter((course) => course.id !== courseId));
-
-    setAssignments((previousAssignments) => previousAssignments.filter((assignment) => assignment.courseId !== courseId));
   }
 
   function handleAddAssignment(newAssignment) {
-    setAssignments((previousAssignments) => [...previousAssignments, newAssignment]);
+    setAssignments(loadAssignments());
   }
 
   function handleDeleteAssignment(assignmentId) {
-    setAssignments((previousAssignments) => {
-      return previousAssignments.filter((assignment) => assignment.id != assignmentId);
-    });
+    deleteAssignment(assignmentId);
+    setAssignments(loadAssignments());
   }
 
   return (
