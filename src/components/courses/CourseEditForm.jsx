@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { saveCourse } from '../../utils/storage.js';
 
 function CourseEditForm({ course, closeCourse }) {
   console.info(course)
