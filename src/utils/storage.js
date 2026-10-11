@@ -28,6 +28,12 @@ export function loadAssignments() {
   return loadFromStorage('assignments');
 }
 
+export function loadAssignmentsByCourseId(courseId) {
+  const assignments = loadAssignments();
+  const filteredAssignments = assignments.filter((assignment) => assignment.courseId !== courseId);
+  return filteredAssignments;
+}
+
 export function saveAssignment(assignment) {
   var assignments = loadFromStorage('assignments');
   assignments.push(assignment);

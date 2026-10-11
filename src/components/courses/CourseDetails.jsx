@@ -1,13 +1,12 @@
 import AssignmentAddForm from '../assignments/AssignmentAddForm';
 import AssignmentList from '../assignments/AssignmentList';
 import { useState } from 'react';
+import { loadAssignmentsByCourseId } from '../../utils/storage.js';
 
 function CourseDetails({ course, closeCourse, onDeleteCourse, assignments, onAddAssignment, onDeleteAssignment }) {
   const [showAddAssignmentForm, setShowAddAssignmentForm] = useState(false);
 
-  const courseAssignments = assignments.filter((assignment) => {
-    return assignment.courseId === course.id;
-  });
+  const courseAssignments = loadAssignmentsByCourseId(course.id);
 
   return (
     <section className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 font-mono text-zinc-200">
