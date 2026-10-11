@@ -11,8 +11,6 @@ function CourseProgress({ courses, onAddCourse, onDeleteCourse, assignments, onA
   const [courses, setCourses] = useState(loadCourses());
   const [selectedCourse, setSelectedCourse] = useState(null);
 
-  console.log(courses);
-
   function handleSelectCourse(course) {
     setSelectedCourse(course);
   }

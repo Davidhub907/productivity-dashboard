@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { saveCourse } from '../../utils/storage.js';
 
 function CourseEditForm({ course, closeCourse }) {
+  console.info(course)
   const [courseName, editCourseName] = useState(course.name);
   const [courseCode, editCourseCode] = useState(course.code);
   const [courseColor, editCourseColor] = useState(course.color);
@@ -14,6 +15,8 @@ function CourseEditForm({ course, closeCourse }) {
       code: courseCode.trim(),
       color: courseColor,
     };
+    console.log('New Course Created:', course);
+    // editCourse(course);
   }
   return (
     <div className="bg-white">

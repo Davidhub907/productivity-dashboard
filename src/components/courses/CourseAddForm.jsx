@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { saveCourse } from '../../utils/storage.js';
 
 function CourseAddForm({ onAddCourse }) {
   const [courseName, setCourseName] = useState('');
@@ -15,7 +16,14 @@ function CourseAddForm({ onAddCourse }) {
       color: courseColor,
     };
     console.log('New Course Created:', newCourse);
+
+    saveCourse(newCourse)
     onAddCourse?.(newCourse);
+
+    //reset form after submission
+    setCourseName('');
+    setCourseCode('');
+    setCourseColor('#32472c');
   }
 
   return (
