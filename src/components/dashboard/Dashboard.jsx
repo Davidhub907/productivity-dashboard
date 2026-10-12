@@ -1,6 +1,7 @@
 import DashboardPanel from './DashboardPanel';
 import CourseProgress from './CourseProgress';
 import FocusSessionConsole from '../study/FocusSessionConsole.jsx';
+import SystemLogs from './SystemLogs.jsx';
 import { useState } from 'react';
 import { deleteCourse, loadCourses } from '../../utils/storage.js';
 
@@ -8,29 +9,35 @@ function Dashboard() {
   const [courses, setCourses] = useState(loadCourses());
   const [assignments, setAssignments] = useState([]);
   const [studySessions, setStudySessions] = useState([]);
+  const [logs, setLogs] = useState([]);
 
   function handleAddCourse(newCourse) {
     setCourses((previousCourses) => [...previousCourses, newCourse]);
+    addLog(`Course "${newCourse.code}" created.`);
   }
 
   function handleDeleteCourse(courseId) {
     deleteCourse(courseId);
     setCourses((previousCourses) => previousCourses.filter((course) => course.id !== courseId));
+    addLog(`Course "${courseToDelete.code}" deleted.`);
 
     setAssignments((previousAssignments) => previousAssignments.filter((assignment) => assignment.courseId !== courseId));
   }
 
   function handleUpdateCourse(updatedCourse) {
     setCourses((previousCourses) => previousCourses.map((course) => (course.id === updatedCourse.id ? updatedCourse : course)));
+    addLog(`Course "${updatedCourse.code}" updated.`);
   }
 
   function handleAddAssignment(newAssignment) {
     setAssignments((previousAssignments) => [...previousAssignments, newAssignment]);
+    addLog(`Assignment "${newAssignment.title}" created.`);
   }
 
   function handleDeleteAssignment(assignmentId) {
     setAssignments((previousAssignments) => {
       return previousAssignments.filter((assignment) => assignment.id != assignmentId);
+      addLog(`Assignment "${assignmentToDelete.title}" deleted.`);
     });
   }
 
@@ -42,6 +49,15 @@ function Dashboard() {
 
   function handleCompleteStudySession(newSession) {
     setStudySessions((previousSessions) => [...previousSessions, newSession]);
+  }
+
+  function addLog(message) {
+    const newLog = {
+      id: crypto.randomUUID(),
+      message,
+    };
+
+    setLogs((previousLogs) => [...previousLogs, newLog]);
   }
 
   return (
@@ -81,11 +97,7 @@ function Dashboard() {
             onUpdateAssignment={handleUpdateAssignment}
           />
 
-          <DashboardPanel title="SYSTEM_LOGS:" className="min-h-[140px]">
-            <div className="flex h-full items-center justify-center rounded-md border border-dashed border-zinc-800 text-zinc-500">
-              System log placeholder
-            </div>
-          </DashboardPanel>
+          <SystemLogs logs={logs} />
         </div>
       </div>
     </section>
