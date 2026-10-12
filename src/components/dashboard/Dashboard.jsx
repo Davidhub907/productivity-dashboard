@@ -1,11 +1,13 @@
 import DashboardPanel from './DashboardPanel';
 import CourseProgress from './CourseProgress';
+import FocusSessionConsole from '../study/FocusSessionConsole.jsx';
 import { useState } from 'react';
 import { deleteCourse, loadCourses } from '../../utils/storage.js';
 
 function Dashboard() {
   const [courses, setCourses] = useState(loadCourses());
   const [assignments, setAssignments] = useState([]);
+  const [studySessions, setStudySessions] = useState([]);
 
   function handleAddCourse(newCourse) {
     setCourses((previousCourses) => [...previousCourses, newCourse]);
@@ -38,6 +40,10 @@ function Dashboard() {
     );
   }
 
+  function handleCompleteStudySession(newSession) {
+    setStudySessions((previousSessions) => [...previousSessions, newSession]);
+  }
+
   return (
     <section className="min-h-screen bg-zinc-950 p-6">
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[2fr_1fr]">
@@ -61,11 +67,7 @@ function Dashboard() {
           </DashboardPanel>
         </div>
         <div className="flex flex-col gap-6">
-          <DashboardPanel title="FOCUS SESS CONSOLE" subtitle="Status: IDLE" className="min-h-[300px]">
-            <div className="flex h-full items-center justify-center rounded-md border border-dashed border-zinc-800 text-zinc-500">
-              Study time placeholder
-            </div>
-          </DashboardPanel>
+          <FocusSessionConsole assignments={assignments} courses={courses} onCompleteSession={handleCompleteStudySession} />
 
           <CourseProgress
             courses={courses}
