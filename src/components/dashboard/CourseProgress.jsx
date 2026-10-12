@@ -4,7 +4,7 @@ import CourseAddForm from '../courses/CourseAddForm';
 import CourseList from '../courses/CourseList';
 import CourseDetails from '../courses/CourseDetails';
 
-function CourseProgress({ courses, onAddCourse, onDeleteCourse, assignments, onAddAssignment, onDeleteAssignment }) {
+function CourseProgress({ courses, onAddCourse, onDeleteCourse, assignments, onAddAssignment, onDeleteAssignment, onUpdateAssignment }) {
   const [showAddCourseForm, setShowAddCourseForm] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
 
@@ -61,6 +61,7 @@ function CourseProgress({ courses, onAddCourse, onDeleteCourse, assignments, onA
           assignments={assignments}
           onAddAssignment={onAddAssignment}
           onDeleteAssignment={onDeleteAssignment}
+          onUpdateAssignment={onUpdateAssignment}
         />
       )}
     </>

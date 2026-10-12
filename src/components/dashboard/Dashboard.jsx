@@ -28,6 +28,12 @@ function Dashboard() {
     });
   }
 
+  function handleUpdateAssignment(updatedAssignment) {
+    setAssignments((previousAssignments) =>
+      previousAssignments.map((assignment) => (assignment.id === updatedAssignment.id ? updatedAssignment : assignment))
+    );
+  }
+
   return (
     <section className="min-h-screen bg-zinc-950 p-6">
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[2fr_1fr]">
@@ -64,6 +70,7 @@ function Dashboard() {
             assignments={assignments}
             onAddAssignment={handleAddAssignment}
             onDeleteAssignment={handleDeleteAssignment}
+            onUpdateAssignment={handleUpdateAssignment}
           />
 
           <DashboardPanel title="SYSTEM_LOGS:" className="min-h-[140px]">

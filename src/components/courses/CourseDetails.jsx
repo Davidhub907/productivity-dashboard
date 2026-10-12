@@ -2,7 +2,7 @@ import AssignmentAddForm from '../assignments/AssignmentAddForm';
 import AssignmentList from '../assignments/AssignmentList';
 import { useState } from 'react';
 
-function CourseDetails({ course, closeCourse, onDeleteCourse, assignments, onAddAssignment, onDeleteAssignment }) {
+function CourseDetails({ course, closeCourse, onDeleteCourse, assignments, onAddAssignment, onDeleteAssignment, onUpdateAssignment }) {
   const [showAddAssignmentForm, setShowAddAssignmentForm] = useState(false);
 
   const courseAssignments = assignments.filter((assignment) => {
@@ -63,7 +63,11 @@ function CourseDetails({ course, closeCourse, onDeleteCourse, assignments, onAdd
           </div>
 
           <div className="mt-4 flex items-center justify-between rounded border-2 border-zinc-800 bg-zinc-950/60 p-5">
-            <AssignmentList assignments={courseAssignments} onDeleteAssignment={onDeleteAssignment} />
+            <AssignmentList
+              assignments={courseAssignments}
+              onDeleteAssignment={onDeleteAssignment}
+              onUpdateAssignment={onUpdateAssignment}
+            />
           </div>
 
           {showAddAssignmentForm && (
