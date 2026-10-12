@@ -82,7 +82,7 @@ function CourseDetails({
             type="button"
             className="cursor-pointer rounded border-2 border-zinc-800 bg-zinc-950 p-0.5 text-rose-500 transition-colors hover:bg-zinc-800 hover:text-rose-400"
           >
-            [ ESC_EXIT ]
+            [ EXIT ]
           </button>
         </div>
 
