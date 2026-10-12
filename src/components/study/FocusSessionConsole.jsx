@@ -67,7 +67,7 @@ function FocusSessionConsole({ assignments, courses, onCompleteSession }) {
   const status = isRunning ? 'RUNNING' : secondsLeft < POMODORO_SECONDS ? 'PAUSED' : 'IDLE';
 
   return (
-    <section className="rounded-xl border border-zinc-800 bg-zinc-950 p-4 font-mono">
+    <section className="rounded-xl border-2 border-zinc-800 bg-zinc-900 p-4 font-mono">
       {/* Header */}
       <div className="flex items-center justify-between gap-4 border-b border-zinc-800 pb-3">
         <h2 className="text-lg font-bold tracking-wide whitespace-nowrap text-zinc-200">// FOCUS SESS CONSOLE</h2>
