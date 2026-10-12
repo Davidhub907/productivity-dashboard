@@ -18,6 +18,10 @@ function Dashboard() {
     setAssignments((previousAssignments) => previousAssignments.filter((assignment) => assignment.courseId !== courseId));
   }
 
+  function handleUpdateCourse(updatedCourse) {
+    setCourses((previousCourses) => previousCourses.map((course) => (course.id === updatedCourse.id ? updatedCourse : course)));
+  }
+
   function handleAddAssignment(newAssignment) {
     setAssignments((previousAssignments) => [...previousAssignments, newAssignment]);
   }
@@ -67,6 +71,8 @@ function Dashboard() {
             courses={courses}
             onAddCourse={handleAddCourse}
             onDeleteCourse={handleDeleteCourse}
+            onUpdateCourse={handleUpdateCourse}
+
             assignments={assignments}
             onAddAssignment={handleAddAssignment}
             onDeleteAssignment={handleDeleteAssignment}
