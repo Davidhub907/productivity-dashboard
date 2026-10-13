@@ -1,16 +1,42 @@
-# React + Vite
+# Student Productivity Dashboard
+A Dashboard to track courses, assginments, and study time.
+# Running the App
+## 1. Install Node.js
+This app requires Node version 22 or higher.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Node.js can be installed from https://nodejs.org/
 
-Currently, two official plugins are available:
+## 2. Download Source Code
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Download the ZIP from the repository page and unzip,
 
-## React Compiler
+or
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Clone the repository.
 
-## Expanding the ESLint configuration
+## 3. Navigate to the App in Terminal
+Open your terminal, and navigate to the app directory.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Mac/Linux terminal or Windows Powershell:
+```bash
+cd <path>/productivity-dashboard
+```
+
+Windows Command Prompt or Powershell:
+```bash
+cd <path>\productivity-dashboard
+```
+
+## 4. Install Dependencies
+Type or paste one of the following commands into your terminal:
+
+`npm install` or `npm i`
+### 3. Run the App
+Type or paste the following command into your terminal:
+```bash
+npm run dev
+```
+## 5. Navigate to the App in Browser
+In your terminal, copy the local link starting with "http://localhost:" and paste it into your browsers address bar.
+
+Once the app is open, do not close your terminal or the server will close.
