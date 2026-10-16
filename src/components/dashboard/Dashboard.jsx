@@ -3,11 +3,11 @@ import CourseProgress from './CourseProgress';
 import FocusSessionConsole from '../study/FocusSessionConsole.jsx';
 import SystemLogs from './SystemLogs.jsx';
 import { useState } from 'react';
-import { deleteCourse, loadCourses } from '../../utils/storage.js';
+import { deleteAssignment, deleteCourse, loadAssignments, loadCourses } from '../../utils/storage.js';
 
 function Dashboard() {
   const [courses, setCourses] = useState(loadCourses());
-  const [assignments, setAssignments] = useState([]);
+  const [assignments, setAssignments] = useState(loadAssignments());
   const [studySessions, setStudySessions] = useState([]);
   const [logs, setLogs] = useState([]);
 
@@ -17,7 +17,14 @@ function Dashboard() {
   }
 
   function handleDeleteCourse(courseId) {
+    const courseToDelete = courses.find((course) => course.id === courseId);
+    for (const assignment of assignments) {
+      if (assignment.courseId === courseId) {
+        deleteAssignment(assignment.id)
+      }
+    }
     deleteCourse(courseId);
+    setAssignments(loadAssignments())
     setCourses((previousCourses) => previousCourses.filter((course) => course.id !== courseId));
     addLog(`Course "${courseToDelete.code}" deleted.`);
 
@@ -30,15 +37,15 @@ function Dashboard() {
   }
 
   function handleAddAssignment(newAssignment) {
-    setAssignments((previousAssignments) => [...previousAssignments, newAssignment]);
+    setAssignments(loadAssignments());
     addLog(`Assignment "${newAssignment.title}" created.`);
   }
 
   function handleDeleteAssignment(assignmentId) {
-    setAssignments((previousAssignments) => {
-      return previousAssignments.filter((assignment) => assignment.id != assignmentId);
-      addLog(`Assignment "${assignmentToDelete.title}" deleted.`);
-    });
+    const assignmentToDelete = assignments.find((assignment) => assignment.id === assignmentId);
+    deleteAssignment(assignmentId);
+    setAssignments(loadAssignments());
+    addLog(`Assignment "${assignmentToDelete.title}" deleted.`);
   }
 
   function handleUpdateAssignment(updatedAssignment) {
