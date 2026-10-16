@@ -41,7 +41,7 @@ Type or paste the following command into your terminal:
 ```bash
 npm run dev
 ```
-## 5. Navigate to the App in Browser
+### 5. Navigate to the App in Browser
 In your terminal, copy the local link starting with "http://localhost:" and paste it into your browsers address bar.
 
 Once the app is open, do not close your terminal or the server will close.
