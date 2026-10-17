@@ -21,7 +21,11 @@ export function deleteCourse(id) {
 
 export function editCourse(id, courseData) {
   var courses = loadFromStorage('courses');
-  // TODO
+  const index = courses.findIndex(course => course.id === id);
+  if (index !== -1) {
+    courses[index] = { ...courses[index], ...courseData };
+    localStorage.setItem('courses', JSON.stringify(courses));
+  }
 }
 
 export function loadAssignments() {
@@ -38,4 +42,13 @@ export function deleteAssignment(id) {
   const assignments = loadAssignments()
   const updatedAssignments = assignments.filter((assignment) => assignment.id !== id);
   localStorage.setItem('assignments', JSON.stringify(updatedAssignments));
+}
+
+export function editAssignment(id, assignmentData) {
+  var assignments = loadAssignments();
+  const index = assignments.findIndex(assignment => assignment.id === id);
+  if (index !== -1) {
+    assignments[index] = { ...assignments[index], ...assignmentData };
+    localStorage.setItem('assignments', JSON.stringify(assignments));
+  }
 }

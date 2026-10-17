@@ -8,11 +8,11 @@ function CourseProgress({
   courses,
   onAddCourse,
   onDeleteCourse,
-  onUpdateCourse,
+  onEditCourse,
   assignments,
   onAddAssignment,
   onDeleteAssignment,
-  onUpdateAssignment,
+  onEditAssignment,
 }) {
   const [showAddCourseForm, setShowAddCourseForm] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
@@ -26,7 +26,7 @@ function CourseProgress({
   }
 
   function handleUpdateSelectedCourse(updatedCourse) {
-    onUpdateCourse(updatedCourse);
+    onEditCourse(updatedCourse);
 
     // Keep the currently-open course in sync
     setSelectedCourse(updatedCourse);
@@ -74,12 +74,12 @@ function CourseProgress({
           course={selectedCourse}
           onDeleteCourse={onDeleteCourse}
           closeCourse={handleCloseSelectedCourse}
-          onUpdateCourse={handleUpdateSelectedCourse}
+          onEditCourse={handleUpdateSelectedCourse}
 
           assignments={assignments}
           onAddAssignment={onAddAssignment}
           onDeleteAssignment={onDeleteAssignment}
-          onUpdateAssignment={onUpdateAssignment}
+          onEditAssignment={onEditAssignment}
         />
       )}
     </>
