@@ -3,7 +3,7 @@ import CourseProgress from './CourseProgress';
 import FocusSessionConsole from '../study/FocusSessionConsole.jsx';
 import SystemLogs from './SystemLogs.jsx';
 import { useState } from 'react';
-import { deleteAssignment, deleteCourse, loadAssignments, loadCourses, editCourse } from '../../utils/storage.js';
+import { deleteAssignment, deleteCourse, loadAssignments, loadCourses, editCourse, editAssignment } from '../../utils/storage.js';
 
 function Dashboard() {
   const [courses, setCourses] = useState(loadCourses());
@@ -49,7 +49,8 @@ function Dashboard() {
     addLog(`Assignment "${assignmentToDelete.title}" deleted.`);
   }
 
-  function handleUpdateAssignment(updatedAssignment) {
+  function handleEditAssignment(updatedAssignment) {
+    editAssignment(updatedAssignment.id, updatedAssignment);
     setAssignments((previousAssignments) =>
       previousAssignments.map((assignment) => (assignment.id === updatedAssignment.id ? updatedAssignment : assignment))
     );
@@ -102,7 +103,7 @@ function Dashboard() {
             assignments={assignments}
             onAddAssignment={handleAddAssignment}
             onDeleteAssignment={handleDeleteAssignment}
-            onEditAssignment={handleUpdateAssignment}
+            onEditAssignment={handleEditAssignment}
           />
 
           <SystemLogs logs={logs} />

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function AssignmentItem({ assignment, onDeleteAssignment, onUpdateAssignment }) {
+function AssignmentItem({ assignment, onDeleteAssignment, onEditAssignment }) {
   const [isEditing, setIsEditing] = useState(false);
 
   const [title, setTitle] = useState(assignment.title);
@@ -21,7 +21,7 @@ function AssignmentItem({ assignment, onDeleteAssignment, onUpdateAssignment }) 
       weight,
     };
 
-    onUpdateAssignment(updatedAssignment);
+    onEditAssignment(updatedAssignment);
     setIsEditing(false);
   }
 
