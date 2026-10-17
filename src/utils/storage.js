@@ -21,7 +21,11 @@ export function deleteCourse(id) {
 
 export function editCourse(id, courseData) {
   var courses = loadFromStorage('courses');
-  // TODO
+  const index = courses.findIndex(course => course.id === id);
+  if (index !== -1) {
+    courses[index] = { ...courses[index], ...courseData };
+    localStorage.setItem('courses', JSON.stringify(courses));
+  }
 }
 
 export function loadAssignments() {

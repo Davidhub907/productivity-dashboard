@@ -3,7 +3,7 @@ import CourseProgress from './CourseProgress';
 import FocusSessionConsole from '../study/FocusSessionConsole.jsx';
 import SystemLogs from './SystemLogs.jsx';
 import { useState } from 'react';
-import { deleteAssignment, deleteCourse, loadAssignments, loadCourses } from '../../utils/storage.js';
+import { deleteAssignment, deleteCourse, loadAssignments, loadCourses, editCourse } from '../../utils/storage.js';
 
 function Dashboard() {
   const [courses, setCourses] = useState(loadCourses());
@@ -31,7 +31,8 @@ function Dashboard() {
     setAssignments((previousAssignments) => previousAssignments.filter((assignment) => assignment.courseId !== courseId));
   }
 
-  function handleUpdateCourse(updatedCourse) {
+  function handleEditCourse(updatedCourse) {
+    editCourse(updatedCourse.id, updatedCourse);
     setCourses((previousCourses) => previousCourses.map((course) => (course.id === updatedCourse.id ? updatedCourse : course)));
     addLog(`Course "${updatedCourse.code}" updated.`);
   }
@@ -96,12 +97,12 @@ function Dashboard() {
             courses={courses}
             onAddCourse={handleAddCourse}
             onDeleteCourse={handleDeleteCourse}
-            onUpdateCourse={handleUpdateCourse}
+            onEditCourse={handleEditCourse}
 
             assignments={assignments}
             onAddAssignment={handleAddAssignment}
             onDeleteAssignment={handleDeleteAssignment}
-            onUpdateAssignment={handleUpdateAssignment}
+            onEditAssignment={handleUpdateAssignment}
           />
 
           <SystemLogs logs={logs} />
