@@ -15,7 +15,7 @@ export function saveCourse(course) {
 
 export function deleteCourse(id) {
   const courses = loadFromStorage('courses');
-  const updatedCourses = courses.filter(course => course.id !== id);
+  const updatedCourses = courses.filter((course) => course.id !== id);
   localStorage.setItem('courses', JSON.stringify(updatedCourses));
 }
 
@@ -35,7 +35,23 @@ export function saveAssignment(assignment) {
 }
 
 export function deleteAssignment(id) {
-  const assignments = loadAssignments()
+  const assignments = loadAssignments();
   const updatedAssignments = assignments.filter((assignment) => assignment.id !== id);
   localStorage.setItem('assignments', JSON.stringify(updatedAssignments));
+}
+
+const STUDY_SESSIONS_KEY = 'studySessions';
+
+export function loadStudySessions() {
+  const storedSessions = localStorage.getItem(STUDY_SESSIONS_KEY);
+
+  if (!storedSessions) {
+    return [];
+  }
+
+  return JSON.parse(storedSessions);
+}
+
+export function saveStudySessions(studySessions) {
+  localStorage.setItem(STUDY_SESSIONS_KEY, JSON.stringify(studySessions));
 }

@@ -3,7 +3,7 @@ import CourseProgress from './CourseProgress';
 import FocusSessionConsole from './FocusSessionConsole.jsx';
 import SystemLogs from './SystemLogs.jsx';
 import { useState } from 'react';
-import { deleteAssignment, deleteCourse, loadAssignments, loadCourses } from '../../utils/storage.js';
+import { deleteAssignment, deleteCourse, loadAssignments, loadCourses, loadStudySessions, saveStudySessions } from '../../utils/storage.js';
 
 function Dashboard() {
   const [courses, setCourses] = useState(loadCourses());
@@ -55,16 +55,13 @@ function Dashboard() {
   }
 
   function handleCompleteStudySession(newSession) {
-    setStudySessions((previousSessions) => [...previousSessions, newSession]);
-  }
+    setStudySessions((previousSessions) => {
+      const updatedSessions = [...previousSessions, newSession];
 
-  function addLog(message) {
-    const newLog = {
-      id: crypto.randomUUID(),
-      message,
-    };
+      saveStudySessions(updatedSessions);
 
-    setLogs((previousLogs) => [...previousLogs, newLog]);
+      return updatedSessions;
+    });
   }
 
   return (
@@ -90,7 +87,7 @@ function Dashboard() {
           </DashboardPanel>
         </div>
         <div className="flex flex-col gap-6">
-          <FocusSessionConsole assignments={assignments} courses={courses} onCompleteSession={handleCompleteStudySession} />
+          <FocusSessionConsole onCompleteSession={handleCompleteStudySession} />
 
           <CourseProgress
             courses={courses}
