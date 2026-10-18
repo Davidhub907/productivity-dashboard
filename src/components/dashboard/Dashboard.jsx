@@ -3,6 +3,7 @@ import CourseProgress from './CourseProgress';
 import FocusSessionConsole from './FocusSessionConsole.jsx';
 import SystemLogs from './SystemLogs.jsx';
 import TodayStudyStatus from './TodaysStudyStatus.jsx';
+import WeeklyStudyActivity from './WeeklyStudyActivity.jsx';
 import { useState } from 'react';
 import { deleteAssignment, deleteCourse, loadAssignments, loadCourses, loadStudySessions, saveStudySessions } from '../../utils/storage.js';
 
@@ -71,11 +72,7 @@ function Dashboard() {
         <div className="flex flex-col gap-6">
           <TodayStudyStatus studySessions={studySessions} />
 
-          <DashboardPanel title="WEEKLY STUDY ACTIVITY" subtitle="Mon - Sun distribution" className="min-h-[240px]">
-            <div className="flex h-full items-center justify-center rounded-md border border-dashed border-zinc-800 text-zinc-500">
-              heatmap placeholder
-            </div>
-          </DashboardPanel>
+          <WeeklyStudyActivity studySessions={studySessions} />
 
           <DashboardPanel title="UPCOMING DEADLINES" subtitle="Next 7 days" className="min-h-[280px]">
             <div className="flex h-full items-center justify-center rounded-md border border-dashed border-zinc-800 text-zinc-500">
