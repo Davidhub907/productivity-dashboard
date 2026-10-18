@@ -106,7 +106,7 @@ function Dashboard() {
   ];
 
   return (
-    <section className="min-h-screen bg-zinc-950 p-6">
+    <section className="min-h-screen bg-[var(--dashboard-bg)] p-6">
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[2fr_1fr]">
         <div className="flex flex-col gap-6">
           <TodayStudyStatus studySessions={studySessions} />

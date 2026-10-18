@@ -45,22 +45,22 @@ function CourseProgress({
 
       {showAddCourseForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
-          <div className="w-full max-w-md rounded-xl border border-zinc-800 bg-zinc-900 p-6 font-mono text-white shadow-2xl">
+          <div className="w-full max-w-md rounded-xl border border-[var(--border-color)] bg-[var(--panel-bg)] p-6 font-mono text-[var(--text-color)] shadow-2xl">
             {/* Header */}
             <div className="mb-6">
               <h1 className="text-lg font-semibold tracking-wide">ADD NEW COURSE</h1>
 
-              <p className="mt-1 text-xs text-zinc-500">Add a course to your current semester.</p>
+              <p className="mt-1 text-xs text-[var(--muted-text)]">Add a course to your current semester.</p>
             </div>
 
             {/* Form */}
             <CourseAddForm onAddCourse={onAddCourse} />
 
             {/* Footer */}
-            <div className="mt-4 border-t border-zinc-800 pt-4">
+            <div className="mt-4 border-t border-[var(--border-color)] pt-4">
               <button
                 onClick={() => setShowAddCourseForm(false)}
-                className="w-full cursor-pointer rounded-md border border-zinc-700 px-4 py-2 text-sm text-zinc-400 transition hover:bg-zinc-800 hover:text-zinc-200"
+                className="w-full cursor-pointer rounded-md border border-[var(--border-color)] px-4 py-2 text-sm text-[var(--muted-text)] transition hover:bg-[var(--border-color)] hover:text-[var(--text-color)]"
               >
                 Cancel
               </button>
@@ -75,7 +75,6 @@ function CourseProgress({
           onDeleteCourse={onDeleteCourse}
           closeCourse={handleCloseSelectedCourse}
           onUpdateCourse={handleUpdateSelectedCourse}
-
           assignments={assignments}
           onAddAssignment={onAddAssignment}
           onDeleteAssignment={onDeleteAssignment}

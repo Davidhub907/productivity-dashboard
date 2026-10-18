@@ -36,55 +36,55 @@ function AssignmentItem({ assignment, onDeleteAssignment, onUpdateAssignment }) 
 
   if (isEditing) {
     return (
-      <section className="rounded-lg border border-zinc-700 bg-zinc-950 p-4">
+      <section className="rounded-lg border border-[var(--border-color)] bg-[var(--dashboard-bg)] p-4">
         <div className="space-y-3">
           <div>
-            <label className="mb-1 block text-xs text-zinc-500">TITLE</label>
+            <label className="mb-1 block text-xs text-[var(--muted-text)]">TITLE</label>
 
             <input
               type="text"
               value={title}
               onChange={(event) => setTitle(event.target.value)}
-              className="w-full rounded-md border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 outline-none focus:border-zinc-600"
+              className="w-full rounded-md border border-[var(--border-color)] bg-[var(--panel-bg)] px-3 py-2 text-sm text-[var(--text-color)] outline-none focus:ring-1 focus:ring-[var(--muted-text)]"
             />
           </div>
 
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
             <div>
-              <label className="mb-1 block text-xs text-zinc-500">DUE DATE</label>
+              <label className="mb-1 block text-xs text-[var(--muted-text)]">DUE DATE</label>
 
               <input
                 type="date"
                 value={dueDate}
                 onChange={(event) => setDueDate(event.target.value)}
-                className="w-full rounded-md border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 outline-none focus:border-zinc-600"
+                className="w-full rounded-md border border-[var(--border-color)] bg-[var(--panel-bg)] px-3 py-2 text-sm text-[var(--text-color)] outline-none focus:ring-1 focus:ring-[var(--muted-text)]"
               />
             </div>
 
             <div>
-              <label className="mb-1 block text-xs text-zinc-500">EST. MINUTES</label>
+              <label className="mb-1 block text-xs text-[var(--muted-text)]">EST. MINUTES</label>
 
               <input
                 type="number"
                 min="0"
                 value={estimatedMinutes}
                 onChange={(event) => setEstimatedMinutes(event.target.value)}
-                className="w-full rounded-md border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 outline-none focus:border-zinc-600"
+                className="w-full rounded-md border border-[var(--border-color)] bg-[var(--panel-bg)] px-3 py-2 text-sm text-[var(--text-color)] outline-none focus:ring-1 focus:ring-[var(--muted-text)]"
               />
             </div>
 
             <div>
-              <label className="mb-1 block text-xs text-zinc-500">WEIGHT</label>
+              <label className="mb-1 block text-xs text-[var(--muted-text)]">WEIGHT</label>
 
               <select
                 value={weight}
                 onChange={(event) => setWeight(event.target.value)}
-                className="w-full rounded-md border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 outline-none focus:border-zinc-600"
+                className="w-full rounded-md border border-[var(--border-color)] bg-[var(--panel-bg)] px-3 py-2 text-sm text-[var(--text-color)] outline-none focus:ring-1 focus:ring-[var(--muted-text)]"
               >
                 <option value="">Select</option>
-                <option value="light">Light</option>
-                <option value="medium">Medium</option>
-                <option value="heavy">Heavy</option>
+                <option value="Easy">Easy</option>
+                <option value="Medium">Medium</option>
+                <option value="Hard">Hard</option>
               </select>
             </div>
           </div>
@@ -93,7 +93,7 @@ function AssignmentItem({ assignment, onDeleteAssignment, onUpdateAssignment }) 
             <button
               type="button"
               onClick={handleCancel}
-              className="cursor-pointer rounded-md border border-zinc-800 px-3 py-1.5 text-xs text-zinc-400 transition hover:bg-zinc-900"
+              className="cursor-pointer rounded-md border border-[var(--border-color)] px-3 py-1.5 text-xs text-[var(--muted-text)] transition hover:bg-[var(--panel-bg)]"
             >
               CANCEL
             </button>
@@ -101,7 +101,7 @@ function AssignmentItem({ assignment, onDeleteAssignment, onUpdateAssignment }) 
             <button
               type="button"
               onClick={handleSave}
-              className="cursor-pointer rounded-md border border-emerald-800 px-3 py-1.5 text-xs text-emerald-400 transition hover:bg-emerald-950"
+              className="cursor-pointer rounded-md border border-emerald-500/50 px-3 py-1.5 text-xs text-emerald-500 transition hover:bg-emerald-500/10"
             >
               SAVE
             </button>
@@ -112,22 +112,22 @@ function AssignmentItem({ assignment, onDeleteAssignment, onUpdateAssignment }) 
   }
 
   return (
-    <section className="group rounded-lg border border-zinc-800 bg-zinc-950/60 p-4 transition hover:border-zinc-700 hover:bg-zinc-950">
+    <section className="group rounded-lg border border-[var(--border-color)] bg-[var(--dashboard-bg)] p-4 transition hover:-translate-y-0.5 hover:bg-[var(--hover-bg)]">
       <div className="flex items-center justify-between gap-4">
         <div className="min-w-0">
-          <p className="truncate text-sm font-semibold tracking-wide text-zinc-200 uppercase">{assignment.title}</p>
+          <p className="truncate text-sm font-semibold tracking-wide text-[var(--text-color)] uppercase">{assignment.title}</p>
 
-          <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-zinc-500">
+          <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[var(--muted-text)]">
             <span>
-              Due: <span className="text-zinc-400">{assignment.dueDate}</span>
+              Due: <span className="text-[var(--text-color)]">{assignment.dueDate}</span>
             </span>
 
             <span>
-              Est: <span className="text-zinc-400">{assignment.estimatedMinutes} min</span>
+              Est: <span className="text-[var(--text-color)]">{assignment.estimatedMinutes} min</span>
             </span>
 
             <span>
-              Weight: <span className="text-zinc-400">{assignment.weight}</span>
+              Weight: <span className="text-[var(--text-color)]">{assignment.weight}</span>
             </span>
           </div>
         </div>
@@ -136,7 +136,7 @@ function AssignmentItem({ assignment, onDeleteAssignment, onUpdateAssignment }) 
           <button
             type="button"
             onClick={() => setIsEditing(true)}
-            className="cursor-pointer rounded-md border border-zinc-800 px-2 py-1 text-xs text-sky-400 transition hover:border-zinc-700 hover:bg-zinc-900"
+            className="cursor-pointer rounded-md border border-[var(--border-color)] px-2 py-1 text-xs text-sky-400 transition hover:bg-[var(--panel-bg)]"
           >
             EDIT
           </button>
@@ -144,7 +144,7 @@ function AssignmentItem({ assignment, onDeleteAssignment, onUpdateAssignment }) 
           <button
             type="button"
             onClick={() => onDeleteAssignment(assignment.id)}
-            className="cursor-pointer rounded-md border border-zinc-800 px-2 py-1 text-xs text-rose-500 transition hover:border-zinc-700 hover:bg-zinc-900 hover:text-rose-400"
+            className="cursor-pointer rounded-md border border-[var(--border-color)] px-2 py-1 text-xs text-rose-500 transition hover:bg-[var(--panel-bg)] hover:text-rose-400"
           >
             DELETE
           </button>

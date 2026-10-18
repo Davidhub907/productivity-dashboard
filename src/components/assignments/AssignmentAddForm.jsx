@@ -21,6 +21,7 @@ function AssignmentAddForm({ courseId, onAddAssignment }) {
     };
 
     console.log('New Assignment Created:', newAssignment);
+
     saveAssignment(newAssignment);
     onAddAssignment?.(newAssignment);
 
@@ -35,7 +36,7 @@ function AssignmentAddForm({ courseId, onAddAssignment }) {
     <form className="flex w-full flex-col gap-5" onSubmit={handleSubmit}>
       {/* Assignment Title */}
       <div className="flex flex-col gap-2">
-        <label htmlFor="assignmentTitle" className="text-xs tracking-wider text-zinc-400 uppercase">
+        <label htmlFor="assignmentTitle" className="text-xs tracking-wider text-[var(--muted-text)] uppercase">
           Assignment Title
         </label>
 
@@ -45,13 +46,13 @@ function AssignmentAddForm({ courseId, onAddAssignment }) {
           value={assignmentTitle}
           onChange={(e) => setAssignmentTitle(e.target.value)}
           placeholder="Project Report"
-          className="w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2.5 text-sm text-zinc-100 transition outline-none placeholder:text-zinc-600 focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500"
+          className="w-full rounded-md border border-[var(--border-color)] bg-[var(--dashboard-bg)] px-3 py-2.5 text-sm text-[var(--text-color)] transition outline-none placeholder:text-[var(--muted-text)] focus:ring-1 focus:ring-[var(--muted-text)]"
         />
       </div>
 
       {/* Due Date */}
       <div className="flex flex-col gap-2">
-        <label htmlFor="dueDate" className="text-xs tracking-wider text-zinc-400 uppercase">
+        <label htmlFor="dueDate" className="text-xs tracking-wider text-[var(--muted-text)] uppercase">
           Due Date
         </label>
 
@@ -60,13 +61,15 @@ function AssignmentAddForm({ courseId, onAddAssignment }) {
           type="date"
           value={dueDate}
           onChange={(e) => setDueDate(e.target.value)}
-          className={`w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2.5 text-sm transition outline-none focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500 ${!dueDate ? 'text-zinc-600' : 'text-zinc-100'}`}
+          className={`w-full rounded-md border border-[var(--border-color)] bg-[var(--dashboard-bg)] px-3 py-2.5 text-sm transition outline-none focus:ring-1 focus:ring-[var(--muted-text)] ${
+            !dueDate ? 'text-[var(--muted-text)]' : 'text-[var(--text-color)]'
+          }`}
         />
       </div>
 
-      {/* Difficulty Weight */}
+      {/* Difficulty */}
       <div className="flex flex-col gap-2">
-        <label htmlFor="weight" className="text-xs tracking-wider text-zinc-400 uppercase">
+        <label htmlFor="weight" className="text-xs tracking-wider text-[var(--muted-text)] uppercase">
           Difficulty
         </label>
 
@@ -74,26 +77,20 @@ function AssignmentAddForm({ courseId, onAddAssignment }) {
           id="weight"
           value={weight}
           onChange={(e) => setWeight(e.target.value)}
-          className={`w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2.5 text-sm text-zinc-100 transition outline-none focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500 ${!weight ? 'text-zinc-600' : 'text-zinc-100'}`}
+          className={`w-full rounded-md border border-[var(--border-color)] bg-[var(--dashboard-bg)] px-3 py-2.5 text-sm transition outline-none focus:ring-1 focus:ring-[var(--muted-text)] ${
+            !weight ? 'text-[var(--muted-text)]' : 'text-[var(--text-color)]'
+          }`}
         >
-          <option value="" className="text-zinc-600">
-            Select Difficulty
-          </option>
-          <option value="Easy" className="text-zinc-100">
-            1 - Easy{' '}
-          </option>
-          <option value="Medium" className="text-zinc-100">
-            2 - Medium{' '}
-          </option>
-          <option value="Hard" className="text-zinc-100">
-            3 - Hard{' '}
-          </option>
+          <option value="">Select Difficulty</option>
+          <option value="Easy">1 - Easy</option>
+          <option value="Medium">2 - Medium</option>
+          <option value="Hard">3 - Hard</option>
         </select>
       </div>
 
       {/* Estimated Minutes */}
       <div className="flex flex-col gap-2">
-        <label htmlFor="estimatedMinutes" className="text-xs tracking-wider text-zinc-400 uppercase">
+        <label htmlFor="estimatedMinutes" className="text-xs tracking-wider text-[var(--muted-text)] uppercase">
           Estimated Minutes
         </label>
 
@@ -104,13 +101,13 @@ function AssignmentAddForm({ courseId, onAddAssignment }) {
           onChange={(e) => setEstimatedMinutes(e.target.value)}
           placeholder="60"
           min="0"
-          className="w-full rounded-md border border-zinc-700 bg-zinc-950 px-3 py-2.5 text-sm text-zinc-100 transition outline-none placeholder:text-zinc-600 focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500"
+          className="w-full rounded-md border border-[var(--border-color)] bg-[var(--dashboard-bg)] px-3 py-2.5 text-sm text-[var(--text-color)] transition outline-none placeholder:text-[var(--muted-text)] focus:ring-1 focus:ring-[var(--muted-text)]"
         />
       </div>
 
       <button
         type="submit"
-        className="mt-2 rounded-md bg-zinc-100 px-4 py-2.5 text-sm font-semibold text-zinc-950 transition hover:bg-white active:scale-[0.98]"
+        className="mt-2 rounded-md bg-[var(--text-color)] px-4 py-2.5 text-sm font-semibold text-[var(--panel-bg)] transition hover:opacity-80 active:scale-[0.98]"
       >
         Add Assignment
       </button>
