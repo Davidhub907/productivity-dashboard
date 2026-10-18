@@ -55,3 +55,19 @@ export function loadStudySessions() {
 export function saveStudySessions(studySessions) {
   localStorage.setItem(STUDY_SESSIONS_KEY, JSON.stringify(studySessions));
 }
+
+const DAILY_STUDY_GOAL_KEY = 'dailyStudyGoalMinutes';
+
+export function loadDailyStudyGoal() {
+  const storedGoal = localStorage.getItem(DAILY_STUDY_GOAL_KEY);
+
+  if (!storedGoal) {
+    return 180;
+  }
+
+  return Number(storedGoal);
+}
+
+export function saveDailyStudyGoal(goalMinutes) {
+  localStorage.setItem(DAILY_STUDY_GOAL_KEY, goalMinutes.toString());
+}
