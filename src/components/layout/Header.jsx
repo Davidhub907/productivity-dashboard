@@ -1,4 +1,11 @@
 function Header({ isDarkMode, toggleTheme }) {
+  const currentDate = new Date().toLocaleDateString('en-US', {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
+
   return (
     <header className="bg-[var(--dashboard-bg)] px-6 font-mono">
       {' '}
@@ -6,7 +13,9 @@ function Header({ isDarkMode, toggleTheme }) {
         <div className="flex items-center gap-4">
           <span className="rounded bg-red-500 px-3 py-1 text-sm font-bold tracking-wide text-zinc-950">TERM-STUDY</span>
 
-          <span className="text-sm tracking-wide text-[var(--muted-text)]">core_session_date_time: date // study_dashboard</span>
+          <span className="text-sm tracking-wide text-[var(--muted-text)]">
+            core_session_date_time: <span>{currentDate} </span> // study_dashboard
+          </span>
         </div>
 
         <div className="flex items-center gap-4">
