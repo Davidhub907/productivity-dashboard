@@ -107,37 +107,37 @@ function Dashboard() {
       id: 'mock-1',
       mode: 'timer',
       durationSeconds: 30 * 60,
-      completedAt: new Date(2026, 9, 12, 10, 0).toISOString(),
+      completedAt: new Date(2026, 9, 19, 10, 0).toISOString(),
     },
     {
       id: 'mock-2',
       mode: 'stopwatch',
       durationSeconds: 75 * 60,
-      completedAt: new Date(2026, 9, 13, 14, 0).toISOString(),
+      completedAt: new Date(2026, 9, 20, 14, 0).toISOString(),
     },
     {
       id: 'mock-3',
       mode: 'timer',
       durationSeconds: 140 * 60,
-      completedAt: new Date(2026, 9, 14, 16, 0).toISOString(),
+      completedAt: new Date(2026, 9, 21, 16, 0).toISOString(),
     },
     {
       id: 'mock-4',
       mode: 'stopwatch',
       durationSeconds: 15 * 60,
-      completedAt: new Date(2026, 9, 15, 12, 0).toISOString(),
+      completedAt: new Date(2026, 9, 22, 12, 0).toISOString(),
     },
     {
       id: 'mock-5',
       mode: 'timer',
       durationSeconds: 95 * 60,
-      completedAt: new Date(2026, 9, 16, 18, 0).toISOString(),
+      completedAt: new Date(2026, 9, 23, 18, 0).toISOString(),
     },
     {
       id: 'mock-6',
       mode: 'stopwatch',
       durationSeconds: 210 * 60,
-      completedAt: new Date(2026, 9, 17, 19, 0).toISOString(),
+      completedAt: new Date(2026, 9, 24, 19, 0).toISOString(),
     },
   ];
 
