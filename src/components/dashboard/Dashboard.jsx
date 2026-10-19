@@ -4,6 +4,7 @@ import FocusSessionConsole from './FocusSessionConsole.jsx';
 import SystemLogs from './SystemLogs.jsx';
 import TodayStudyStatus from './TodaysStudyStatus.jsx';
 import WeeklyStudyActivity from './WeeklyStudyActivity.jsx';
+import UpcomingDeadlines from './UpcomingDeadlines.jsx';
 import { useState } from 'react';
 import { deleteAssignment, deleteCourse, loadAssignments, loadCourses, loadStudySessions, saveStudySessions } from '../../utils/storage.js';
 
@@ -113,11 +114,7 @@ function Dashboard() {
 
           <WeeklyStudyActivity studySessions={mockStudySessions} />
 
-          <DashboardPanel title="UPCOMING DEADLINES" subtitle="Next 7 days" className="min-h-[280px]">
-            <div className="flex h-full items-center justify-center rounded-md border border-dashed border-zinc-800 text-zinc-500">
-              Deadlines placeholder
-            </div>
-          </DashboardPanel>
+          <UpcomingDeadlines assignments={assignments} courses={courses} />
         </div>
         <div className="flex flex-col gap-6">
           <FocusSessionConsole onCompleteSession={handleCompleteStudySession} />
