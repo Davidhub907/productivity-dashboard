@@ -24,6 +24,15 @@ function CourseDetails({
     return assignment.courseId === course.id;
   });
 
+  const completedAssignments = courseAssignments.filter((assignment) => assignment.completed);
+
+  const activeAssignments = courseAssignments.filter((assignment) => !assignment.completed);
+
+  const totalAssignments = courseAssignments.length;
+  const completedCount = completedAssignments.length;
+
+  const progressPercentage = totalAssignments === 0 ? 0 : Math.round((completedCount / totalAssignments) * 100);
+
   function handleSaveCourse() {
     if (!editCode.trim() || !editName.trim()) {
       return;
@@ -162,9 +171,23 @@ function CourseDetails({
         </div>
 
         {/* Course Progress */}
-        <div className="flex items-center justify-between rounded border-2 border-[var(--border-color)] bg-[var(--dashboard-bg)] p-5">
-          <p>course progress placeholder</p>
-        </div>
+        <section className="rounded-lg border border-[var(--border-color)] bg-[var(--dashboard-bg)] p-4">
+          <div className="mb-3 flex items-center justify-between">
+            <div>
+              <p className="text-xs tracking-widest text-[var(--muted-text)]">COURSE_PROGRESS</p>
+
+              <p className="mt-1 text-sm text-[var(--primary-text)]">
+                {completedCount} / {totalAssignments} assignments completed
+              </p>
+            </div>
+
+            <span className="font-mono text-xl font-semibold text-emerald-500">{progressPercentage}%</span>
+          </div>
+
+          <div className="h-3 w-full overflow-hidden rounded-sm bg-zinc-800">
+            <div className="h-full bg-emerald-500 transition-all duration-500" style={{ width: `${progressPercentage}%` }} />
+          </div>
+        </section>
 
         {/* Study Time */}
         <div className="flex items-center justify-between rounded border-2 border-[var(--border-color)] bg-[var(--dashboard-bg)] p-5">
@@ -186,7 +209,7 @@ function CourseDetails({
 
           <div className="mt-4 flex items-center justify-between rounded border-2 border-[var(--border-color)] bg-[var(--panel-bg)] p-5">
             <AssignmentList
-              assignments={courseAssignments}
+              assignments={activeAssignments}
               onDeleteAssignment={onDeleteAssignment}
               onUpdateAssignment={onUpdateAssignment}
             />
@@ -213,9 +236,23 @@ function CourseDetails({
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-between border-t border-[var(--border-color)] p-2 text-xs tracking-wider">
-          <p>footer placeholder</p>
-        </div>
+        <footer className="flex items-center justify-between border-t border-[var(--border-color)] pt-4 text-xs tracking-wider text-[var(--muted-text)]">
+          <div className="flex items-center gap-4">
+            <span>
+              TOTAL: <span className="text-[var(--primary-text)]">{totalAssignments}</span>
+            </span>
+
+            <span>
+              COMPLETE: <span className="text-emerald-500">{completedCount}</span>
+            </span>
+
+            <span>
+              REMAINING: <span className="text-amber-400">{activeAssignments.length}</span>
+            </span>
+          </div>
+
+          <span className="text-[var(--muted-text)]">{course.code}</span>
+        </footer>
       </div>
     </section>
   );

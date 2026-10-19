@@ -34,6 +34,15 @@ function AssignmentItem({ assignment, onDeleteAssignment, onUpdateAssignment }) 
     setIsEditing(false);
   }
 
+  function handleComplete() {
+    const updatedAssignment = {
+      ...assignment,
+      completed: true,
+    };
+
+    onUpdateAssignment(updatedAssignment);
+  }
+
   if (isEditing) {
     return (
       <section className="rounded-lg border border-[var(--border-color)] bg-[var(--dashboard-bg)] p-4">
@@ -131,6 +140,14 @@ function AssignmentItem({ assignment, onDeleteAssignment, onUpdateAssignment }) 
             </span>
           </div>
         </div>
+
+        <button
+          type="button"
+          onClick={handleComplete}
+          className="cursor-pointer rounded-md border border-[var(--border-color)] px-2 py-1 text-xs text-sky-400 transition hover:bg-[var(--panel-bg)]"
+        >
+          COMPLETE
+        </button>
 
         <div className="flex shrink-0 gap-2">
           <button
