@@ -82,8 +82,8 @@ function FocusSessionConsole({ onCompleteSession }) {
             onClick={() => handleModeChange('timer')}
             className={`rounded-md border px-3 py-2 text-xs font-semibold tracking-wider transition ${
               mode === 'timer'
-                ? 'border-zinc-600 bg-zinc-800 text-zinc-100'
-                : 'border-zinc-800 bg-zinc-950 text-zinc-500 hover:text-zinc-300'
+                ? 'border-[var(--border-color)] bg-[var(--hover-bg)] text-[var(--text-color)]'
+                : 'border-[var(--border-color)] bg-[var(--dashboard-bg)] text-[var(--muted-text)] hover:bg-[var(--hover-bg)] hover:text-[var(--text-color)]'
             }`}
           >
             TIMER
@@ -93,8 +93,8 @@ function FocusSessionConsole({ onCompleteSession }) {
             onClick={() => handleModeChange('stopwatch')}
             className={`rounded-md border px-3 py-2 text-xs font-semibold tracking-wider transition ${
               mode === 'stopwatch'
-                ? 'border-zinc-600 bg-zinc-800 text-zinc-100'
-                : 'border-zinc-800 bg-zinc-950 text-zinc-500 hover:text-zinc-300'
+                ? 'border-[var(--border-color)] bg-[var(--hover-bg)] text-[var(--text-color)]'
+                : 'border-[var(--border-color)] bg-[var(--dashboard-bg)] text-[var(--muted-text)] hover:bg-[var(--hover-bg)] hover:text-[var(--text-color)]'
             }`}
           >
             STOPWATCH
@@ -104,7 +104,7 @@ function FocusSessionConsole({ onCompleteSession }) {
         {/* Timer duration */}
         {mode === 'timer' && (
           <div>
-            <label className="mb-2 block text-xs tracking-wider text-zinc-500">STUDY DURATION // MINUTES</label>
+            <label className="mb-2 block text-xs tracking-wider text-[var(--muted-text)]">STUDY DURATION // MINUTES</label>
 
             <input
               type="number"
@@ -121,16 +121,16 @@ function FocusSessionConsole({ onCompleteSession }) {
                 }
               }}
               disabled={elapsedSeconds > 0 || isRunning}
-              className="w-full rounded-md border border-zinc-800 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 outline-none focus:border-zinc-600 disabled:opacity-50"
+              className="w-full rounded-md border border-[var(--border-color)] bg-[var(--dashboard-bg)] px-3 py-2 text-sm text-[var(--text-color)] outline-none focus:ring-1 focus:ring-[var(--muted-text)] disabled:opacity-50"
             />
           </div>
         )}
 
         {/* Clock */}
-        <div className="flex flex-col items-center justify-center rounded-md border border-zinc-800 bg-zinc-950 py-7">
+        <div className="flex flex-col items-center justify-center rounded-md border border-[var(--border-color)] bg-[var(--dashboard-bg)] py-7">
           <p className="text-4xl font-bold tracking-wider whitespace-nowrap text-amber-400">[ {formatTime(displaySeconds)} ]</p>
 
-          <p className="mt-3 text-xs tracking-[0.2em] text-zinc-500">MODE: {mode.toUpperCase()}</p>
+          <p className="mt-3 text-xs tracking-[0.2em] text-[var(--muted-text)]">MODE: {mode.toUpperCase()}</p>
         </div>
 
         {/* Controls */}
@@ -155,7 +155,7 @@ function FocusSessionConsole({ onCompleteSession }) {
           <button
             onClick={handleFinish}
             disabled={elapsedSeconds <= 0}
-            className="rounded-md bg-zinc-800 px-3 py-3 text-sm font-bold tracking-wide text-zinc-200 transition hover:bg-zinc-700 disabled:cursor-not-allowed disabled:opacity-40"
+            className="rounded-md bg-[var(--hover-bg)] px-3 py-3 text-sm font-bold tracking-wide text-[var(--text-color)] transition hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-40"
           >
             FINISH
           </button>
@@ -163,7 +163,7 @@ function FocusSessionConsole({ onCompleteSession }) {
           <button
             onClick={reset}
             disabled={elapsedSeconds <= 0 && !isComplete}
-            className="col-span-2 rounded-md border border-zinc-800 px-3 py-2 text-xs font-semibold tracking-wide text-zinc-500 transition hover:border-zinc-700 hover:text-zinc-300 disabled:opacity-30"
+            className="col-span-2 rounded-md border border-[var(--border-color)] px-3 py-2 text-xs font-semibold tracking-wide text-[var(--muted-text)] transition hover:bg-[var(--hover-bg)] hover:text-[var(--text-color)] disabled:opacity-30"
           >
             SYS_RESET
           </button>

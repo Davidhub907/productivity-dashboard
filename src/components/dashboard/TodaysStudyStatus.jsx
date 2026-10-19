@@ -82,16 +82,16 @@ function TodayStudyStatus({ studySessions }) {
     <DashboardPanel title="TODAY'S STUDY STATUS" subtitle={`${todaysSessions.length} sessions completed`}>
       <div className="flex flex-col gap-4 font-mono">
         {/* Main progress */}
-        <div className="rounded-md border border-zinc-800 bg-zinc-950 p-5">
+        <div className="rounded-md border border-[var(--border-color)] bg-[var(--dashboard-bg)] p-5">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <p className="text-xs tracking-widest text-zinc-500">TOTAL STUDY TIME</p>
+              <p className="text-xs tracking-widest text-[var(--muted-text)]">TOTAL STUDY TIME</p>
 
-              <p className="mt-2 text-3xl font-bold tracking-wide text-zinc-200">{formatDuration(totalSeconds)}</p>
+              <p className="mt-2 text-3xl font-bold tracking-wide text-[var(--text-color)]">{formatDuration(totalSeconds)}</p>
             </div>
 
             <div className="text-right">
-              <p className="text-xs tracking-widest text-zinc-500">DAILY GOAL</p>
+              <p className="text-xs tracking-widest text-[var(--muted-text)]">DAILY GOAL</p>
 
               <div className="mt-2 flex items-center justify-end gap-2">
                 <input
@@ -100,10 +100,10 @@ function TodayStudyStatus({ studySessions }) {
                   max="600"
                   value={goalMinutes}
                   onChange={handleGoalChange}
-                  className="w-20 rounded-md border border-zinc-800 bg-zinc-900 px-2 py-1 text-right text-sm text-zinc-200 outline-none focus:border-zinc-600"
+                  className="w-20 rounded-md border border-[var(--border-color)] bg-[var(--panel-bg)] px-2 py-1 text-right text-sm text-[var(--text-color)] outline-none focus:ring-1 focus:ring-[var(--muted-text)]"
                 />
 
-                <span className="text-xs text-zinc-500">MIN</span>
+                <span className="text-xs text-[var(--muted-text)]">MIN</span>
               </div>
             </div>
           </div>
@@ -111,16 +111,16 @@ function TodayStudyStatus({ studySessions }) {
           {/* Progress bar */}
           <div className="mt-5">
             <div className="mb-2 flex items-center justify-between text-xs">
-              <span className="text-zinc-500">DAILY PROGRESS</span>
+              <span className="text-[var(--muted-text)]">DAILY PROGRESS</span>
 
-              <span className="text-zinc-400">{Math.round(progress)}%</span>
+              <span className="text-[var(--text-color)]">{Math.round(progress)}%</span>
             </div>
 
-            <div className="h-2 overflow-hidden rounded-full bg-zinc-800">
+            <div className="h-2 overflow-hidden rounded-full bg-[var(--hover-bg)]">
               <div className="h-full bg-emerald-500 transition-all" style={{ width: `${progress}%` }} />
             </div>
 
-            <p className="mt-2 text-xs text-zinc-500">
+            <p className="mt-2 text-xs text-[var(--muted-text)]">
               {remainingSeconds > 0 ? `${formatDuration(remainingSeconds)} remaining` : 'DAILY TARGET COMPLETE'}
             </p>
           </div>
@@ -128,16 +128,16 @@ function TodayStudyStatus({ studySessions }) {
 
         {/* Secondary stats */}
         <div className="grid grid-cols-2 gap-3">
-          <div className="rounded-md border border-zinc-800 bg-zinc-950 p-4">
-            <p className="text-xs tracking-widest text-zinc-500">SESSIONS</p>
+          <div className="rounded-md border border-[var(--border-color)] bg-[var(--dashboard-bg)] p-4">
+            <p className="text-xs tracking-widest text-[var(--muted-text)]">SESSIONS</p>
 
-            <p className="mt-2 text-xl font-bold text-zinc-200">{todaysSessions.length}</p>
+            <p className="mt-2 text-xl font-bold text-[var(--text-color)]">{todaysSessions.length}</p>
           </div>
 
-          <div className="rounded-md border border-zinc-800 bg-zinc-950 p-4">
-            <p className="text-xs tracking-widest text-zinc-500">AVG SESSION</p>
+          <div className="rounded-md border border-[var(--border-color)] bg-[var(--dashboard-bg)] p-4">
+            <p className="text-xs tracking-widest text-[var(--muted-text)]">AVG SESSION</p>
 
-            <p className="mt-2 text-xl font-bold text-zinc-200">{formatDuration(averageSeconds)}</p>
+            <p className="mt-2 text-xl font-bold text-[var(--text-color)]">{formatDuration(averageSeconds)}</p>
           </div>
         </div>
       </div>
