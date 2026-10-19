@@ -16,45 +16,65 @@ function Dashboard() {
 
   function handleAddCourse(newCourse) {
     setCourses((previousCourses) => [...previousCourses, newCourse]);
+
     addLog(`Course "${newCourse.code}" created.`);
   }
 
   function handleDeleteCourse(courseId) {
     const courseToDelete = courses.find((course) => course.id === courseId);
+
     for (const assignment of assignments) {
       if (assignment.courseId === courseId) {
         deleteAssignment(assignment.id);
       }
     }
+
     deleteCourse(courseId);
-    setAssignments(loadAssignments());
+
     setCourses((previousCourses) => previousCourses.filter((course) => course.id !== courseId));
-    addLog(`Course "${courseToDelete.code}" deleted.`);
 
     setAssignments((previousAssignments) => previousAssignments.filter((assignment) => assignment.courseId !== courseId));
+
+    if (courseToDelete) {
+      addLog(`Course "${courseToDelete.code}" deleted.`);
+    }
   }
 
   function handleUpdateCourse(updatedCourse) {
     setCourses((previousCourses) => previousCourses.map((course) => (course.id === updatedCourse.id ? updatedCourse : course)));
+
     addLog(`Course "${updatedCourse.code}" updated.`);
   }
 
   function handleAddAssignment(newAssignment) {
     setAssignments(loadAssignments());
+
     addLog(`Assignment "${newAssignment.title}" created.`);
   }
 
   function handleDeleteAssignment(assignmentId) {
     const assignmentToDelete = assignments.find((assignment) => assignment.id === assignmentId);
+
     deleteAssignment(assignmentId);
     setAssignments(loadAssignments());
-    addLog(`Assignment "${assignmentToDelete.title}" deleted.`);
+
+    if (assignmentToDelete) {
+      addLog(`Assignment "${assignmentToDelete.title}" deleted.`);
+    }
   }
 
   function handleUpdateAssignment(updatedAssignment) {
+    const previousAssignment = assignments.find((assignment) => assignment.id === updatedAssignment.id);
+
     setAssignments((previousAssignments) =>
       previousAssignments.map((assignment) => (assignment.id === updatedAssignment.id ? updatedAssignment : assignment))
     );
+
+    if (!previousAssignment?.completed && updatedAssignment.completed) {
+      addLog(`Assignment "${updatedAssignment.title}" completed.`);
+    } else {
+      addLog(`Assignment "${updatedAssignment.title}" updated.`);
+    }
   }
 
   function handleCompleteStudySession(newSession) {
@@ -65,6 +85,21 @@ function Dashboard() {
 
       return updatedSessions;
     });
+
+    addLog('Study session completed.');
+  }
+
+  function addLog(message) {
+    const newLog = {
+      id: crypto.randomUUID(),
+      message,
+      time: new Date().toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
+    };
+
+    setLogs((currentLogs) => [...currentLogs, newLog]);
   }
 
   const mockStudySessions = [
