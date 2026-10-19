@@ -141,13 +141,15 @@ function AssignmentItem({ assignment, onDeleteAssignment, onUpdateAssignment }) 
           </div>
         </div>
 
-        <button
-          type="button"
-          onClick={handleComplete}
-          className="cursor-pointer rounded-md border border-[var(--border-color)] px-2 py-1 text-xs text-sky-400 transition hover:bg-[var(--panel-bg)]"
-        >
-          COMPLETE
-        </button>
+        {!assignment.completed && (
+          <button
+            type="button"
+            onClick={handleComplete}
+            className="rounded-md border border-[var(--border-color)] px-3 py-2 text-xs text-sky-400 transition hover:bg-[var(--panel-bg)]"
+          >
+            COMPLETE
+          </button>
+        )}
 
         <div className="flex shrink-0 gap-2">
           <button

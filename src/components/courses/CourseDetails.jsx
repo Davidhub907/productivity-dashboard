@@ -59,9 +59,9 @@ function CourseDetails({
   return (
     <section className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 font-mono text-[var(--text-color)]">
       {/* Outer Shell Window */}
-      <div className="w-full max-w-xl space-y-5 rounded-xl border-2 border-[var(--border-color)] bg-[var(--panel-bg)] p-5 shadow-2xl">
+      <div className="flex max-h-[92vh] w-full max-w-xl flex-col overflow-hidden rounded-xl border-2 border-[var(--border-color)] bg-[var(--panel-bg)] p-5 shadow-2xl">
         {/* Top Console Bar */}
-        <div className="flex items-center justify-between border-b border-[var(--border-color)] p-2 text-xs tracking-wider">
+        <div className="flex shrink-0 items-center justify-between border-b border-[var(--border-color)] p-2 text-xs tracking-wider">
           <div className="flex items-center gap-2 text-[var(--muted-text)]">
             <span className="h-2 w-2 animate-pulse rounded-full" style={{ backgroundColor: course.color }}></span>
 
@@ -96,147 +96,167 @@ function CourseDetails({
           </button>
         </div>
 
-        {/* Course Information */}
-        <div className="rounded border-2 border-[var(--border-color)] bg-[var(--dashboard-bg)] p-5">
-          {isEditingCourse ? (
-            <div className="space-y-4">
-              <div className="grid gap-3 sm:grid-cols-2">
-                <div>
-                  <label className="mb-1 block text-xs tracking-wider text-[var(--muted-text)]">COURSE CODE</label>
+        {/* Scrollable Main Content */}
+        <div className="subtle-scrollbar min-h-0 flex-1 space-y-5 overflow-y-auto py-5 pr-1">
+          {/* Course Information */}
+          <div className="rounded border-2 border-[var(--border-color)] bg-[var(--dashboard-bg)] p-5">
+            {isEditingCourse ? (
+              <div className="space-y-4">
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <div>
+                    <label className="mb-1 block text-xs tracking-wider text-[var(--muted-text)]">COURSE CODE</label>
 
-                  <input
-                    type="text"
-                    value={editCode}
-                    onChange={(event) => setEditCode(event.target.value)}
-                    className="w-full rounded-md border border-[var(--border-color)] bg-[var(--panel-bg)] px-3 py-2 text-sm text-[var(--text-color)] outline-none focus:ring-1 focus:ring-[var(--muted-text)]"
-                  />
+                    <input
+                      type="text"
+                      value={editCode}
+                      onChange={(event) => setEditCode(event.target.value)}
+                      className="w-full rounded-md border border-[var(--border-color)] bg-[var(--panel-bg)] px-3 py-2 text-sm text-[var(--text-color)] outline-none focus:ring-1 focus:ring-[var(--muted-text)]"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="mb-1 block text-xs tracking-wider text-[var(--muted-text)]">COURSE NAME</label>
+
+                    <input
+                      type="text"
+                      value={editName}
+                      onChange={(event) => setEditName(event.target.value)}
+                      className="w-full rounded-md border border-[var(--border-color)] bg-[var(--panel-bg)] px-3 py-2 text-sm text-[var(--text-color)] outline-none focus:ring-1 focus:ring-[var(--muted-text)]"
+                    />
+                  </div>
                 </div>
 
                 <div>
-                  <label className="mb-1 block text-xs tracking-wider text-[var(--muted-text)]">COURSE NAME</label>
+                  <label className="mb-1 block text-xs tracking-wider text-[var(--muted-text)]">COURSE COLOR</label>
 
                   <input
-                    type="text"
-                    value={editName}
-                    onChange={(event) => setEditName(event.target.value)}
-                    className="w-full rounded-md border border-[var(--border-color)] bg-[var(--panel-bg)] px-3 py-2 text-sm text-[var(--text-color)] outline-none focus:ring-1 focus:ring-[var(--muted-text)]"
+                    type="color"
+                    value={editColor}
+                    onChange={(event) => setEditColor(event.target.value)}
+                    className="h-10 w-16 cursor-pointer rounded border border-[var(--border-color)] bg-[var(--panel-bg)] p-1"
                   />
                 </div>
-              </div>
 
-              <div>
-                <label className="mb-1 block text-xs tracking-wider text-[var(--muted-text)]">COURSE COLOR</label>
-
-                <input
-                  type="color"
-                  value={editColor}
-                  onChange={(event) => setEditColor(event.target.value)}
-                  className="h-10 w-16 cursor-pointer rounded border border-[var(--border-color)] bg-[var(--panel-bg)] p-1"
-                />
-              </div>
-
-              <div className="flex justify-end gap-2">
-                <button
-                  type="button"
-                  onClick={handleCancelCourseEdit}
-                  className="cursor-pointer rounded-md border border-[var(--border-color)] px-3 py-1.5 text-xs text-[var(--muted-text)] transition hover:bg-[var(--panel-bg)]"
-                >
-                  CANCEL
-                </button>
-
-                <button
-                  type="button"
-                  onClick={handleSaveCourse}
-                  className="cursor-pointer rounded-md border border-emerald-500/50 px-3 py-1.5 text-xs text-emerald-500 transition hover:bg-emerald-500/10"
-                >
-                  SAVE
-                </button>
-              </div>
-            </div>
-          ) : (
-            <div className="flex items-center justify-between gap-4">
-              <div className="flex items-center gap-3">
-                <span className="h-3 w-3 rounded-full" style={{ backgroundColor: course.color }} />
-
-                <span className="text-xl">
-                  {course.code} {course.name}
-                </span>
-              </div>
-
-              <span className="rounded border border-emerald-500/40 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-emerald-500">
-                ENROLLED
-              </span>
-            </div>
-          )}
-        </div>
-
-        {/* Course Progress */}
-        <section className="rounded-lg border border-[var(--border-color)] bg-[var(--dashboard-bg)] p-4">
-          <div className="mb-3 flex items-center justify-between">
-            <div>
-              <p className="text-xs tracking-widest text-[var(--muted-text)]">COURSE_PROGRESS</p>
-
-              <p className="mt-1 text-sm text-[var(--primary-text)]">
-                {completedCount} / {totalAssignments} assignments completed
-              </p>
-            </div>
-
-            <span className="font-mono text-xl font-semibold text-emerald-500">{progressPercentage}%</span>
-          </div>
-
-          <div className="h-3 w-full overflow-hidden rounded-sm bg-zinc-800">
-            <div className="h-full bg-emerald-500 transition-all duration-500" style={{ width: `${progressPercentage}%` }} />
-          </div>
-        </section>
-
-        {/* Study Time */}
-        <div className="flex items-center justify-between rounded border-2 border-[var(--border-color)] bg-[var(--dashboard-bg)] p-5">
-          <span>Study time placeholder</span>
-        </div>
-
-        {/* Assignments */}
-        <div className="rounded border-2 border-[var(--border-color)] bg-[var(--dashboard-bg)] p-5">
-          <div className="flex items-center justify-between">
-            <h1 className="text-lg">ASSIGNMENTS</h1>
-
-            <button
-              onClick={() => setShowAddAssignmentForm(true)}
-              className="rounded border border-[var(--border-color)] bg-[var(--panel-bg)] px-2 py-1 text-[var(--text-color)] transition hover:opacity-70"
-            >
-              + Assignment
-            </button>
-          </div>
-
-          <div className="mt-4 flex items-center justify-between rounded border-2 border-[var(--border-color)] bg-[var(--panel-bg)] p-5">
-            <AssignmentList
-              assignments={activeAssignments}
-              onDeleteAssignment={onDeleteAssignment}
-              onUpdateAssignment={onUpdateAssignment}
-            />
-          </div>
-
-          {showAddAssignmentForm && (
-            <div className="fixed inset-0 z-60 flex items-center justify-center bg-black/60">
-              <div className="rounded-lg border-2 border-[var(--border-color)] bg-[var(--panel-bg)] p-6 font-mono text-[var(--text-color)]">
-                <h1 className="mb-4 text-lg">ADD NEW ASSIGNMENT</h1>
-
-                <div className="flex items-end justify-between gap-4">
-                  <AssignmentAddForm courseId={course.id} onAddAssignment={onAddAssignment} />
+                <div className="flex justify-end gap-2">
+                  <button
+                    type="button"
+                    onClick={handleCancelCourseEdit}
+                    className="cursor-pointer rounded-md border border-[var(--border-color)] px-3 py-1.5 text-xs text-[var(--muted-text)] transition hover:bg-[var(--panel-bg)]"
+                  >
+                    CANCEL
+                  </button>
 
                   <button
-                    onClick={() => setShowAddAssignmentForm(false)}
-                    className="rounded border border-[var(--border-color)] bg-[var(--dashboard-bg)] px-2 py-1 text-[var(--muted-text)] transition hover:text-[var(--text-color)]"
+                    type="button"
+                    onClick={handleSaveCourse}
+                    className="cursor-pointer rounded-md border border-emerald-500/50 px-3 py-1.5 text-xs text-emerald-500 transition hover:bg-emerald-500/10"
                   >
-                    Cancel
+                    SAVE
                   </button>
                 </div>
               </div>
+            ) : (
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <span className="h-3 w-3 rounded-full" style={{ backgroundColor: course.color }} />
+
+                  <span className="text-xl">
+                    {course.code} {course.name}
+                  </span>
+                </div>
+
+                <span className="rounded border border-emerald-500/40 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-emerald-500">
+                  ENROLLED
+                </span>
+              </div>
+            )}
+          </div>
+
+          {/* Course Progress */}
+          <section className="rounded-lg border border-[var(--border-color)] bg-[var(--dashboard-bg)] p-4">
+            <div className="mb-3 flex items-center justify-between">
+              <div>
+                <p className="text-xs tracking-widest text-[var(--muted-text)]">COURSE_PROGRESS</p>
+
+                <p className="mt-1 text-sm text-[var(--primary-text)]">
+                  {completedCount} / {totalAssignments} assignments completed
+                </p>
+              </div>
+
+              <span className="font-mono text-xl font-semibold text-emerald-500">{progressPercentage}%</span>
             </div>
-          )}
+
+            <div className="h-3 w-full overflow-hidden rounded-sm bg-zinc-800">
+              <div className="h-full bg-emerald-500 transition-all duration-500" style={{ width: `${progressPercentage}%` }} />
+            </div>
+          </section>
+
+          {/* Assignments */}
+          <div className="rounded border-2 border-[var(--border-color)] bg-[var(--dashboard-bg)] p-5">
+            <div className="flex items-center justify-between">
+              <h1 className="text-lg">ASSIGNMENTS</h1>
+
+              <button
+                onClick={() => setShowAddAssignmentForm(true)}
+                className="rounded border border-[var(--border-color)] bg-[var(--panel-bg)] px-2 py-1 text-[var(--text-color)] transition hover:opacity-70"
+              >
+                + Assignment
+              </button>
+            </div>
+
+            <div className="mt-4 flex items-center justify-between rounded border-2 border-[var(--border-color)] bg-[var(--panel-bg)] p-5">
+              <AssignmentList
+                assignments={activeAssignments}
+                onDeleteAssignment={onDeleteAssignment}
+                onUpdateAssignment={onUpdateAssignment}
+              />
+            </div>
+
+            <section className="mt-5">
+              <div className="mb-2 flex items-center justify-between">
+                <p className="text-xs font-semibold tracking-widest text-[var(--muted-text)]">COMPLETED_ASSIGNMENTS</p>
+
+                <span className="text-xs text-emerald-500">{completedAssignments.length}</span>
+              </div>
+
+              {completedAssignments.length > 0 ? (
+                <div className="flex items-center justify-between rounded border-2 border-[var(--border-color)] bg-[var(--panel-bg)] p-5">
+                  <AssignmentList
+                    assignments={completedAssignments}
+                    onDeleteAssignment={onDeleteAssignment}
+                    onUpdateAssignment={onUpdateAssignment}
+                  />
+                </div>
+              ) : (
+                <div className="rounded-md border border-dashed border-[var(--border-color)] bg-[var(--panel-bg)] p-4 text-center text-xs text-[var(--muted-text)]">
+                  No completed assignments.
+                </div>
+              )}
+            </section>
+
+            {showAddAssignmentForm && (
+              <div className="fixed inset-0 z-60 flex items-center justify-center bg-black/60">
+                <div className="rounded-lg border-2 border-[var(--border-color)] bg-[var(--panel-bg)] p-6 font-mono text-[var(--text-color)]">
+                  <h1 className="mb-4 text-lg">ADD NEW ASSIGNMENT</h1>
+
+                  <div className="flex items-end justify-between gap-4">
+                    <AssignmentAddForm courseId={course.id} onAddAssignment={onAddAssignment} />
+
+                    <button
+                      onClick={() => setShowAddAssignmentForm(false)}
+                      className="rounded border border-[var(--border-color)] bg-[var(--dashboard-bg)] px-2 py-1 text-[var(--muted-text)] transition hover:text-[var(--text-color)]"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Footer */}
-        <footer className="flex items-center justify-between border-t border-[var(--border-color)] pt-4 text-xs tracking-wider text-[var(--muted-text)]">
+        <footer className="flex shrink-0 items-center justify-between border-t border-[var(--border-color)] pt-4 text-xs tracking-wider text-[var(--muted-text)]">
           <div className="flex items-center gap-4">
             <span>
               TOTAL: <span className="text-[var(--primary-text)]">{totalAssignments}</span>
