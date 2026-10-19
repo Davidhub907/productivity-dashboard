@@ -1,14 +1,16 @@
 import DashboardPanel from './DashboardPanel';
 import CourseProgress from './CourseProgress';
-import FocusSessionConsole from '../study/FocusSessionConsole.jsx';
+import FocusSessionConsole from './FocusSessionConsole.jsx';
 import SystemLogs from './SystemLogs.jsx';
+import TodayStudyStatus from './TodaysStudyStatus.jsx';
+import WeeklyStudyActivity from './WeeklyStudyActivity.jsx';
 import { useState } from 'react';
-import { deleteAssignment, deleteCourse, loadAssignments, loadCourses, editCourse, editAssignment } from '../../utils/storage.js';
+import { deleteAssignment, deleteCourse, loadAssignments, loadCourses, editCourse, editAssignment, loadStudySessions, saveStudySessions } from '../../utils/storage.js';
 
 function Dashboard() {
   const [courses, setCourses] = useState(loadCourses());
   const [assignments, setAssignments] = useState(loadAssignments());
-  const [studySessions, setStudySessions] = useState([]);
+  const [studySessions, setStudySessions] = useState(loadStudySessions());
   const [logs, setLogs] = useState([]);
 
   function handleAddCourse(newCourse) {
@@ -20,11 +22,11 @@ function Dashboard() {
     const courseToDelete = courses.find((course) => course.id === courseId);
     for (const assignment of assignments) {
       if (assignment.courseId === courseId) {
-        deleteAssignment(assignment.id)
+        deleteAssignment(assignment.id);
       }
     }
     deleteCourse(courseId);
-    setAssignments(loadAssignments())
+    setAssignments(loadAssignments());
     setCourses((previousCourses) => previousCourses.filter((course) => course.id !== courseId));
     addLog(`Course "${courseToDelete.code}" deleted.`);
 
@@ -57,33 +59,61 @@ function Dashboard() {
   }
 
   function handleCompleteStudySession(newSession) {
-    setStudySessions((previousSessions) => [...previousSessions, newSession]);
+    setStudySessions((previousSessions) => {
+      const updatedSessions = [...previousSessions, newSession];
+
+      saveStudySessions(updatedSessions);
+
+      return updatedSessions;
+    });
   }
 
-  function addLog(message) {
-    const newLog = {
-      id: crypto.randomUUID(),
-      message,
-    };
-
-    setLogs((previousLogs) => [...previousLogs, newLog]);
-  }
+  const mockStudySessions = [
+    {
+      id: 'mock-1',
+      mode: 'timer',
+      durationSeconds: 30 * 60,
+      completedAt: new Date(2026, 9, 12, 10, 0).toISOString(),
+    },
+    {
+      id: 'mock-2',
+      mode: 'stopwatch',
+      durationSeconds: 75 * 60,
+      completedAt: new Date(2026, 9, 13, 14, 0).toISOString(),
+    },
+    {
+      id: 'mock-3',
+      mode: 'timer',
+      durationSeconds: 140 * 60,
+      completedAt: new Date(2026, 9, 14, 16, 0).toISOString(),
+    },
+    {
+      id: 'mock-4',
+      mode: 'stopwatch',
+      durationSeconds: 15 * 60,
+      completedAt: new Date(2026, 9, 15, 12, 0).toISOString(),
+    },
+    {
+      id: 'mock-5',
+      mode: 'timer',
+      durationSeconds: 95 * 60,
+      completedAt: new Date(2026, 9, 16, 18, 0).toISOString(),
+    },
+    {
+      id: 'mock-6',
+      mode: 'stopwatch',
+      durationSeconds: 210 * 60,
+      completedAt: new Date(2026, 9, 17, 19, 0).toISOString(),
+    },
+  ];
 
   return (
     <section className="min-h-screen bg-zinc-950 p-6">
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[2fr_1fr]">
         <div className="flex flex-col gap-6">
-          <DashboardPanel title="TODAY'S STUDY STATUS" subtitle="Session target:" className="min-h-[300px]">
-            <div className="flex h-full items-center justify-center rounded-md border border-dashed border-zinc-800 text-zinc-500">
-              Study status placeholder
-            </div>
-          </DashboardPanel>
+          <TodayStudyStatus studySessions={studySessions} />
 
-          <DashboardPanel title="WEEKLY STUDY ACTIVITY" subtitle="Mon - Sun distribution" className="min-h-[240px]">
-            <div className="flex h-full items-center justify-center rounded-md border border-dashed border-zinc-800 text-zinc-500">
-              heatmap placeholder
-            </div>
-          </DashboardPanel>
+          <WeeklyStudyActivity studySessions={mockStudySessions} />
 
           <DashboardPanel title="UPCOMING DEADLINES" subtitle="Next 7 days" className="min-h-[280px]">
             <div className="flex h-full items-center justify-center rounded-md border border-dashed border-zinc-800 text-zinc-500">
@@ -92,7 +122,7 @@ function Dashboard() {
           </DashboardPanel>
         </div>
         <div className="flex flex-col gap-6">
-          <FocusSessionConsole assignments={assignments} courses={courses} onCompleteSession={handleCompleteStudySession} />
+          <FocusSessionConsole onCompleteSession={handleCompleteStudySession} />
 
           <CourseProgress
             courses={courses}
