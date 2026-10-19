@@ -6,11 +6,11 @@ function CourseDetails({
   course,
   closeCourse,
   onDeleteCourse,
-  onUpdateCourse,
+  onEditCourse,
   assignments,
   onAddAssignment,
   onDeleteAssignment,
-  onUpdateAssignment,
+  onEditAssignment,
 }) {
   const [isEditingCourse, setIsEditingCourse] = useState(false);
 
@@ -36,7 +36,7 @@ function CourseDetails({
       color: editColor,
     };
 
-    onUpdateCourse(updatedCourse);
+    onEditCourse(updatedCourse);
     setIsEditingCourse(false);
   }
 
@@ -179,7 +179,7 @@ function CourseDetails({
             <AssignmentList
               assignments={courseAssignments}
               onDeleteAssignment={onDeleteAssignment}
-              onUpdateAssignment={onUpdateAssignment}
+              onEditAssignment={onEditAssignment}
             />
           </div>
 

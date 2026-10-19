@@ -5,7 +5,7 @@ import SystemLogs from './SystemLogs.jsx';
 import TodayStudyStatus from './TodaysStudyStatus.jsx';
 import WeeklyStudyActivity from './WeeklyStudyActivity.jsx';
 import { useState } from 'react';
-import { deleteAssignment, deleteCourse, loadAssignments, loadCourses, loadStudySessions, saveStudySessions } from '../../utils/storage.js';
+import { deleteAssignment, deleteCourse, loadAssignments, loadCourses, editCourse, editAssignment, loadStudySessions, saveStudySessions } from '../../utils/storage.js';
 
 function Dashboard() {
   const [courses, setCourses] = useState(loadCourses());
@@ -33,7 +33,8 @@ function Dashboard() {
     setAssignments((previousAssignments) => previousAssignments.filter((assignment) => assignment.courseId !== courseId));
   }
 
-  function handleUpdateCourse(updatedCourse) {
+  function handleEditCourse(updatedCourse) {
+    editCourse(updatedCourse.id, updatedCourse);
     setCourses((previousCourses) => previousCourses.map((course) => (course.id === updatedCourse.id ? updatedCourse : course)));
     addLog(`Course "${updatedCourse.code}" updated.`);
   }
@@ -50,7 +51,8 @@ function Dashboard() {
     addLog(`Assignment "${assignmentToDelete.title}" deleted.`);
   }
 
-  function handleUpdateAssignment(updatedAssignment) {
+  function handleEditAssignment(updatedAssignment) {
+    editAssignment(updatedAssignment.id, updatedAssignment);
     setAssignments((previousAssignments) =>
       previousAssignments.map((assignment) => (assignment.id === updatedAssignment.id ? updatedAssignment : assignment))
     );
@@ -126,12 +128,12 @@ function Dashboard() {
             courses={courses}
             onAddCourse={handleAddCourse}
             onDeleteCourse={handleDeleteCourse}
-            onUpdateCourse={handleUpdateCourse}
+            onEditCourse={handleEditCourse}
 
             assignments={assignments}
             onAddAssignment={handleAddAssignment}
             onDeleteAssignment={handleDeleteAssignment}
-            onUpdateAssignment={handleUpdateAssignment}
+            onEditAssignment={handleEditAssignment}
           />
 
           <SystemLogs logs={logs} />

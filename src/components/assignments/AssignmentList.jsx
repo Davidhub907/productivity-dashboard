@@ -1,6 +1,6 @@
 import AssignmentItem from './AssignmentItem';
 
-function AssignmentList({ assignments, onDeleteAssignment, onUpdateAssignment }) {
+function AssignmentList({ assignments, onDeleteAssignment, onEditAssignment }) {
   return (
     <section>
       <div className="subtle-scrollbar max-h-100 space-y-2 overflow-y-auto bg-zinc-900 tracking-wide">
@@ -9,7 +9,7 @@ function AssignmentList({ assignments, onDeleteAssignment, onUpdateAssignment })
             key={assignment.id}
             assignment={assignment}
             onDeleteAssignment={onDeleteAssignment}
-            onUpdateAssignment={onUpdateAssignment}
+            onEditAssignment={onEditAssignment}
           />
         ))}
       </div>
